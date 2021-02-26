@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#content {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+/* HEADER | TOP OF PAGE */
+.header {
+  display: flex;
+}
+/* NAV | SIDEBAR MENU */
+nav {
+  background-color: aqua;
+}
+.navButton {
+  /* font-size: 58px; */
+}
+/* MAIN | CENTER OF PAGE  */
+main {
+  background-color: aquamarine;
+  flex: 1;
+}
+/* FOOTER | BOTTOM OF PAGE */
+.footer {
+  background: rgba(12, 12, 13, 0.78);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4%;
+  color: #fff;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  line-height: 6px;
+  border-bottom: 3px solid transparent;
+  text-shadow: 0px 0px 1px transparent;
+}
+.logo {
+  padding-left: 10px;
+}
