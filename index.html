@@ -9,10 +9,10 @@
 <body>
     <div id="content">
         <header class="header">
-            <a href="javascript:void(0)" onclick="openNav()" class="navButton">☰</a>
+            <a href="#" onclick="openNav()" class="navButton">☰</a>
             <h1 class="title">ToDo</h1>
-            <label class="switch">
-                <input type="checkbox">
+            <label class="switch" onclick="sliderToggle()">
+                <input type="checkbox" checked="true">
                 <span class="slider round"></span>
               </label>
             <a href="#" class="signin">signin</a>
@@ -47,20 +47,28 @@
     </script>
     <script>
         let root = document.documentElement;
+        const sliderSelect = document.querySelector('label');
+
+        function sliderToggle(){
+
+        if(sliderSelect.firstElementChild.checked){
         //light mode
-        // root.style.setProperty('--background-one', '#f5f8fa')
-        // root.style.setProperty('--background-two', '#1da1f2')
-        // root.style.setProperty('--border-color', '#aab8c2')
-        // root.style.setProperty('--hover-color', 'rgba(29, 161, 242, 0.1)')
-        // root.style.setProperty('--primary-text', '#14171a')
-        // root.style.setProperty('--secondary-text', '#657786')
+        root.style.setProperty('--background-one', '#3B5998')
+        root.style.setProperty('--background-two', '#1DA1F2')
+        root.style.setProperty('--border-color', '#8B9DC3')
+        root.style.setProperty('--hover-color', 'rgba(29, 161, 242, 0.1)')
+        root.style.setProperty('--primary-text', '#F7F7F7')
+        root.style.setProperty('--secondary-text', '#DFE3EE')
+        }else {
         // //dark mode
-        // root.style.setProperty('--background-one', '#15202B')
-        // root.style.setProperty('--background-two', '#1da1f2')
-        // root.style.setProperty('--border-color', '#192734')
-        // root.style.setProperty('--hover-color', '#22303C')
-        // root.style.setProperty('--primary-text', '#FFFFFF')
-        // root.style.setProperty('--secondary-text', '#8899A6')
+        root.style.setProperty('--background-one', '#15202B')
+        root.style.setProperty('--background-two', '#1da1f2')
+        root.style.setProperty('--border-color', '#192734')
+        root.style.setProperty('--hover-color', '#22303C')
+        root.style.setProperty('--primary-text', '#FFFFFF')
+        root.style.setProperty('--secondary-text', '#8899A6')
+        }
+    }
 
     </script>
 </body>

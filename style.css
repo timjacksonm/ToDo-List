@@ -3,12 +3,12 @@
   padding: 0;
 }
 :root {
-  --background-one: #f5f8fa;
+  --background-one: #3b5998;
   --background-two: #1da1f2;
-  --border-color: #aab8c2;
+  --border-color: #8b9dc3;
   --hover-color: rgba(29, 161, 242, 0.1);
-  --primary-text: #14171a;
-  --secondary-text: #657786;
+  --primary-text: #f7f7f7;
+  --secondary-text: #dfe3ee;
 }
 #content {
   margin: 0;
@@ -31,7 +31,8 @@
   text-decoration: none;
   color: var(--primary-text);
 }
-.navButton:hover {
+.navButton:hover,
+.signin:hover {
   color: var(--background-two);
 }
 .navButton,
@@ -107,7 +108,7 @@ input:checked + .slider:before {
   border: 1px solid var(--border-color);
   overflow-x: hidden;
   padding-top: 60px;
-  transition: 0.5s;
+  transition: width 0.5s;
 }
 .sidenav a {
   padding: 8px 8px 8px 32px;
