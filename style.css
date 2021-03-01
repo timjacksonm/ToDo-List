@@ -24,7 +24,7 @@
 .header {
   padding: 8px;
   display: flex;
-  border: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--background-two);
   align-items: center;
 }
 .navButton {
@@ -65,7 +65,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #22303c;
+  background-color: var(--secondary-text);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -81,7 +81,7 @@
   transition: 0.4s;
 }
 input:checked + .slider {
-  background-color: #1da1f2;
+  background-color: var(--background-two);
 }
 input:focus + .slider {
   box-shadow: 0 0 1px #1da1f2;
@@ -134,8 +134,8 @@ input:checked + .slider:before {
   margin-left: 50px;
 }
 .dropdown {
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--background-two);
+  border-bottom: 1px solid var(--background-two);
 }
 .dropdown-content {
   display: none;
@@ -174,9 +174,9 @@ main {
   border-bottom: 1px solid var(--primary-text);
   position: relative;
 }
-/* .listItem:last-child {
+.listItem:last-child {
   border: 0;
-} */
+}
 .checkLabel input {
   position: absolute;
   opacity: 0;
@@ -200,7 +200,7 @@ main {
   height: 20px;
   width: 20px;
   margin: 0 20px;
-  border: 2px solid var(--primary-text);
+  border: 2px solid var(--background-two);
   border-radius: 2px;
   cursor: pointer;
 }
@@ -215,9 +215,6 @@ main {
   border: solid var(--background-one);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
-}
-.checkLabel:hover input ~ .checkmark {
-  background-color: var(--background-two);
 }
 .checkLabel input:checked ~ .checkmark {
   background-color: var(--background-two);
