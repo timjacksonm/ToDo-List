@@ -32,6 +32,9 @@
   text-decoration: none;
   color: var(--primary-text);
 }
+.signin {
+  font-size: 14px;
+}
 .navButton:hover,
 .signin:hover {
   color: var(--background-two);
@@ -50,8 +53,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 30px;
-  height: 17px;
+  width: 3vh;
+  height: 1.7vh;
 }
 .switch input {
   opacity: 0;
@@ -72,10 +75,10 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 13px;
-  width: 13px;
-  left: 2px;
-  bottom: 2px;
+  height: 1.3vh;
+  width: 1.3vh;
+  left: 0.2vh;
+  bottom: 0.2vh;
   background-color: #ffffff;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -87,9 +90,9 @@ input:focus + .slider {
   box-shadow: 0 0 1px #1da1f2;
 }
 input:checked + .slider:before {
-  -webkit-transform: translateX(13px);
-  -ms-transform: translateX(13px);
-  transform: translateX(13px);
+  -webkit-transform: translateX(1.34vh);
+  -ms-transform: translateX(1.34vh);
+  transform: translateX(1.34vh);
 }
 .slider.round {
   border-radius: 34px;
@@ -114,7 +117,7 @@ input:checked + .slider:before {
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 16px;
   color: var(--primary-text);
   display: block;
   transition: 0.3s;
@@ -149,7 +152,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 10px 0;
   padding: 0;
   width: 100%;
   font-family: "Roboto", sans-serif;
@@ -159,7 +162,7 @@ main {
   flex-direction: column;
   margin: 0;
   padding: 0;
-  width: 80%;
+  width: 100%;
   max-width: 1000px;
   background-color: var(--hover-color);
   color: var(--primary-text);
@@ -179,11 +182,10 @@ main {
 }
 .priority {
   display: flex;
-  height: 12px;
-  width: 12px;
-  border: 1px solid var(--background-two);
+  height: 8px;
+  width: 8px;
   border-radius: 100%;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 10px;
 }
 .checkLabel input {
   position: absolute;
@@ -193,7 +195,7 @@ main {
   width: 0;
 }
 .checkLabel {
-  font-size: 20px;
+  font-size: 12px;
   margin: 0;
   display: flex;
   flex-direction: row;
@@ -205,9 +207,9 @@ main {
   display: flex;
   align-self: center;
   position: relative;
-  height: 20px;
-  width: 20px;
-  margin: 0 20px;
+  height: 12px;
+  width: 12px;
+  margin: 0 10px;
   border: 2px solid var(--background-two);
   border-radius: 2px;
   cursor: pointer;
@@ -216,10 +218,10 @@ main {
   content: "";
   display: none;
   position: absolute;
-  top: -1px;
-  left: 4px;
-  width: 6px;
-  height: 12px;
+  top: -3px;
+  left: 0.5px;
+  width: 4.5px;
+  height: 8.5px;
   border: solid var(--background-one);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -233,8 +235,10 @@ main {
   align-self: center;
   position: relative;
   cursor: pointer;
-  padding: 20px;
+  padding: 8px 10px;
   border-left: 1px solid var(--primary-text);
+  overflow-x: hidden;
+  white-space: pre;
 }
 .labelDisc:hover {
   color: var(--background-two);
@@ -258,18 +262,19 @@ main {
   width: 85%;
 }
 .time {
-  padding: 20px 10px;
+  padding: 8px 8px;
   border-left: 1px solid var(--primary-text);
+  border-right: 1px solid var(--primary-text);
 }
 .modify {
-  padding: 20px 10px;
+  padding: 8px 8px;
   border: none;
   background: none;
   font-size: inherit;
   color: inherit;
 }
 .delete {
-  padding: 20px 10px;
+  padding: 8px 8px;
   border: none;
   background: none;
   font-size: inherit;
@@ -293,4 +298,314 @@ main {
 }
 .logo {
   padding-left: 10px;
+}
+/* MEDIA QUERIES */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --background-one: #3b5998;
+    --background-two: #1da1f2;
+    --border-color: #8b9dc3;
+    --hover-color: rgba(29, 161, 242, 0.1);
+    --primary-text: #f7f7f7;
+    --secondary-text: #dfe3ee;
+  }
+  #content {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-one);
+    color: var(--primary-text);
+  }
+  /* HEADER | TOP OF PAGE */
+  .header {
+    padding: 8px;
+    display: flex;
+    border-bottom: 1px solid var(--background-two);
+    align-items: center;
+  }
+  .navButton {
+    font-size: 25px;
+    text-decoration: none;
+    color: var(--primary-text);
+  }
+  .navButton:hover,
+  .signin:hover {
+    color: var(--background-two);
+  }
+  .navButton,
+  .title,
+  .signin {
+    color: var(--primary-text);
+    text-decoration: none;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .title {
+    flex: 1;
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 17px;
+  }
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--secondary-text);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  input:checked + .slider {
+    background-color: var(--background-two);
+  }
+  input:focus + .slider {
+    box-shadow: 0 0 1px #1da1f2;
+  }
+  input:checked + .slider:before {
+    -webkit-transform: translateX(13px);
+    -ms-transform: translateX(13px);
+    transform: translateX(13px);
+  }
+  .slider.round {
+    border-radius: 34px;
+  }
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  /* NAV | SIDEBAR MENU */
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: var(--background-one);
+    border: 1px solid var(--border-color);
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: width 0.5s;
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: var(--primary-text);
+    display: block;
+    transition: 0.3s;
+  }
+  .closebtn {
+    padding: 8px !important;
+  }
+  .sidenav a:hover {
+    color: var(--background-two);
+    background-color: var(--hover-color);
+  }
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .dropdown {
+    border-top: 1px solid var(--background-two);
+    border-bottom: 1px solid var(--background-two);
+  }
+  .dropdown-content {
+    display: none;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  /* MAIN | CENTER OF PAGE  */
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    max-width: 1000px;
+    background-color: var(--hover-color);
+    color: var(--primary-text);
+    border-radius: 6px;
+    box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.2);
+    list-style: none;
+    overflow: hidden;
+  }
+  .listItem {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--primary-text);
+    position: relative;
+  }
+  .listItem:last-child {
+    border: 0;
+  }
+  .priority {
+    display: flex;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    margin: 0 0 0 20px;
+  }
+  .checkLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  .checkLabel {
+    font-size: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .checkmark {
+    display: flex;
+    align-self: center;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    margin: 0 20px;
+    border: 2px solid var(--background-two);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .checkmark:after {
+    content: "";
+    display: none;
+    position: absolute;
+    top: -1px;
+    left: 4px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--background-one);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .checkLabel input:checked ~ .checkmark {
+    background-color: var(--background-two);
+  }
+  .labelDisc {
+    display: flex;
+    flex: 1;
+    align-self: center;
+    position: relative;
+    cursor: pointer;
+    padding: 20px;
+    border-left: 1px solid var(--primary-text);
+  }
+  .labelDisc:hover {
+    color: var(--background-two);
+  }
+  .labelDisc:after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: var(--secondary-text);
+    position: absolute;
+    top: 50%;
+    left: 7.5%;
+    transform: translateY(-50%);
+    transition: width 100ms ease-in-out;
+  }
+  .checkLabel input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .checkLabel input:checked ~ .labelDisc:after {
+    width: 85%;
+  }
+  .time {
+    padding: 20px 10px;
+    border-left: 1px solid var(--primary-text);
+    border-right: 1px solid var(--primary-text);
+  }
+  .modify {
+    padding: 20px 13px;
+    border: none;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+  }
+  .delete {
+    padding: 20px 13px;
+    border: none;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+  }
+  /* FOOTER | BOTTOM OF PAGE */
+  .footer {
+    background: rgba(12, 12, 13, 0.78);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 4%;
+    color: #fff;
+    font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    line-height: 6px;
+    border-bottom: 3px solid transparent;
+    text-shadow: 0px 0px 1px transparent;
+    z-index: 2;
+  }
+  .logo {
+    padding-left: 10px;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+/* Extra large devices (large desktops, 12200px and up) */
+@media (min-width: 1200px) {
 }
