@@ -114,8 +114,8 @@ input:checked + .slider:before {
   padding-top: 60px;
   transition: width 0.5s;
 }
-.sidenav a {
-  padding: 8px 8px 8px 32px;
+.sidenav a, .dropdown {
+  padding: 8px;
   text-decoration: none;
   font-size: 14px;
   color: var(--primary-text);
@@ -125,7 +125,7 @@ input:checked + .slider:before {
 .closebtn {
   padding: 8px !important;
 }
-.sidenav a:hover {
+.sidenav a:hover, .addProject:hover {
   color: var(--background-two);
   background-color: var(--hover-color);
 }
@@ -139,6 +139,7 @@ input:checked + .slider:before {
 .dropdown {
   border-top: 1px solid var(--background-two);
   border-bottom: 1px solid var(--background-two);
+  cursor: default;
 }
 .dropdown-content {
   display: none;
@@ -146,7 +147,17 @@ input:checked + .slider:before {
 .dropdown:hover .dropdown-content {
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 8px 0px;
+}
+.addProject {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  margin-left: 5px;
+  align-self: center;
+  color: var(--primary-text);
 }
 .project {
   display: block;
@@ -159,6 +170,9 @@ input:checked + .slider:before {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.proName {
+ text-align: center;
 }
 .project input:checked ~ .proName {
   background-color: var(--secondary-text);
@@ -338,25 +352,13 @@ main {
   .labelDisc:after {
     left: 4%;
   }
-  .time {
+  .time, .modify, .delete {
     padding: 20px 13px;
-  }
-  .modify {
-    padding: 20px 13px;
-  }
-  .delete {
-    padding: 20px 13px;
-  }
-  .sidenav a {
-    padding: 8px;
-  }
-  .dropdown:hover .dropdown-content {
-    padding: 8px 0px;
   }
 }
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .signin {
+  .signin, .checkLabel {
     font-size: 14px;
   }
   .switch {
@@ -374,8 +376,7 @@ main {
     -ms-transform: translateX(13px);
     transform: translateX(13px);
   }
-  .sidenav a {
-    padding: 8px 8px 8px 20px;
+  .sidenav a, .dropdown {
     font-size: 16px;
   }
   .list {
@@ -385,9 +386,6 @@ main {
   .priority {
     height: 12px;
     width: 12px;
-  }
-  .checkLabel {
-    font-size: 14px;
   }
   .checkmark {
     height: 20px;
@@ -403,37 +401,21 @@ main {
   .labelDisc {
     padding: 20px;
   }
-  .time {
-    padding: 20px 13px;
-  }
-  .modify {
-    padding: 20px 13px;
-  }
-  .delete {
+  .time, .modify, .delete {
     padding: 20px 13px;
   }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .signin {
-    font-size: 18px;
-  }
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
+  .sidenav a, .dropdown, .signin {
     font-size: 18px;
   }
   .checkLabel {
     font-size: 16px;
   }
-  .dropdown:hover .dropdown-content {
-    padding: 8px 8px 8px 32px;
-  }
 }
 /* Extra large devices (large desktops, 12200px and up) */
 @media (min-width: 1200px) {
-  .signin {
-    font-size: 20px;
-  }
-  .sidenav a {
+  .sidenav a, .dropdown, .signin {
     font-size: 20px;
   }
   .list {
