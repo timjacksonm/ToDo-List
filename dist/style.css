@@ -229,6 +229,7 @@ main {
 }
 .labelDisc {
   display: flex;
+  flex: 1;
   align-self: center;
   position: relative;
   cursor: pointer;
@@ -255,6 +256,24 @@ main {
 }
 .checkLabel input:checked ~ .labelDisc:after {
   width: 85%;
+}
+.time {
+  padding: 20px 10px;
+  border-left: 1px solid var(--primary-text);
+}
+.modify {
+  padding: 20px 10px;
+  border: none;
+  background: none;
+  font-size: inherit;
+  color: inherit;
+}
+.delete {
+  padding: 20px 10px;
+  border: none;
+  background: none;
+  font-size: inherit;
+  color: inherit;
 }
 /* FOOTER | BOTTOM OF PAGE */
 .footer {
