@@ -177,6 +177,14 @@ main {
 .listItem:last-child {
   border: 0;
 }
+.priority {
+  display: flex;
+  height: 12px;
+  width: 12px;
+  border: 1px solid var(--background-two);
+  border-radius: 100%;
+  margin: 0 0 0 20px;
+}
 .checkLabel input {
   position: absolute;
   opacity: 0;
