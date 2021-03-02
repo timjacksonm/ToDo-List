@@ -239,6 +239,8 @@ main {
   border-left: 1px solid var(--primary-text);
   overflow-x: hidden;
   white-space: pre;
+  text-decoration: none;
+  color: inherit;
 }
 .labelDisc:hover,
 .modify:hover,
@@ -253,7 +255,7 @@ main {
   background-color: var(--secondary-text);
   position: absolute;
   top: 50%;
-  left: 5%;
+  left: 3.8%;
   transform: translateY(-50%);
   transition: width 100ms ease-in-out;
 }
@@ -267,6 +269,9 @@ main {
   padding: 8px 8px;
   border-left: 1px solid var(--primary-text);
   border-right: 1px solid var(--primary-text);
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
 }
 .modify {
   padding: 8px 8px;
@@ -304,6 +309,21 @@ main {
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
+  .labelDisc {
+    padding: 20px;
+  }
+  .labelDisc:after {
+    left: 4%;
+  }
+  .time {
+    padding: 20px 13px;
+  }
+  .modify {
+    padding: 20px 13px;
+  }
+  .delete {
+    padding: 20px 13px;
+  }
   .sidenav a {
     padding: 8px;
   }
@@ -357,9 +377,6 @@ main {
   .labelDisc {
     padding: 20px;
   }
-  .labelDisc:after {
-    left: 7.5%;
-  }
   .time {
     padding: 20px 13px;
   }
@@ -396,5 +413,8 @@ main {
   }
   .checkLabel {
     font-size: 18px;
+  }
+  .labelDisc:after {
+    left: 2%;
   }
 }
