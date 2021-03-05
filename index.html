@@ -10,16 +10,18 @@
 <body>
     <div id="content">
         <header class="header">
-            <a href="#" onclick="openNav()" class="navButton">☰</a>
+            <button id="openNav" class="navButton">☰</button>
             <h1 class="title">ToDo</h1>
-            <label class="switch" onclick="sliderToggle()">
+            <label id="sliderToggle" class="switch">
                 <input type="checkbox">
                 <span class="slider round"></span>
               </label>
             <a href="#" class="signin">signin</a>
         </header>
         <nav id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <button id="closeNav" class="closebtn" type="reset">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
             <a href="#">All</a>
             <a href="#">Today</a>
             <a href="#">Week</a>
@@ -45,7 +47,7 @@
             </div>
         </nav>
         <main>
-            <button class="fa fa-plus addTask"></button>
+            <button id="newTodo" class="fa fa-plus addTask"></button>
             <ul id="todoContainer" class="list">
               <li class="listItem">
                 <label for="first" class="checkLabel">
@@ -102,66 +104,6 @@
                 <a href="https://github.com/timjacksonm"><img src="images/GitHub-Mark-Light-32px.png" style="height: 3vh; width: 3vh;"> </a>
             </div>
         </footer>
-        <div class="filter"></div>
-        <div class="formContainer">
-          <form class="todoForm" action="/">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
-            <h2>New ToDo</h2>
-            <p>Project Select</p>
-            <select>
-              <option value="0">*Default*</option>
-              <option value="1">Audi</option>
-              <option value="2">BMW</option>
-              <option value="3">Citroen</option>
-              <option value="4">Ford</option>
-              <option value="5">Honda</option>
-            </select>
-            <p>Priority level</p>
-            <select>
-              <option value="0">Low</option>
-              <option value="1">Medium</option>
-              <option value="2">High</option>
-            </select>
-            <p>Discription</p>
-            <textarea rows="4"></textarea>
-            <input type="text" name="name" placeholder="mm/dd/yyyy -:-- --">
-            <button type="submit" href="/">Submit</button>
-          </form>
-        </div>
     <script src="main.js"></script>
-    <script>
-        function openNav() {
-          document.getElementById("mySidenav").style.width = "25vh";
-        }
-        function closeNav() {
-          document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
-    <script>
-        let root = document.documentElement;
-        const sliderSelect = document.querySelector('label');
-
-        function sliderToggle(){
-
-        if(sliderSelect.firstElementChild.checked){
-        // //dark mode
-        root.style.setProperty('--background-one', '#15202B');
-        root.style.setProperty('--background-two', '#1da1f2');
-        root.style.setProperty('--border-color', '#192734');
-        root.style.setProperty('--hover-color', '#22303C');
-        root.style.setProperty('--primary-text', '#FFFFFF');
-        root.style.setProperty('--secondary-text', '#8899A6');
-        }else {
-        //light mode
-        root.style.setProperty('--background-one', '#3B5998');
-        root.style.setProperty('--background-two', '#1DA1F2');
-        root.style.setProperty('--border-color', '#8B9DC3');
-        root.style.setProperty('--hover-color', 'rgba(29, 161, 242, 0.1)');
-        root.style.setProperty('--primary-text', '#F7F7F7');
-        root.style.setProperty('--secondary-text', '#DFE3EE');
-        }
-    }
-
-    </script>
 </body>
 </html>
