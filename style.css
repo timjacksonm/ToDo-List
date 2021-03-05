@@ -17,8 +17,20 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: var(--background-one);
   color: var(--primary-text);
+}
+.filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(2px);
+  color: white;
 }
 /* HEADER | TOP OF PAGE */
 .header {
@@ -196,6 +208,84 @@ main {
   font-family: "Roboto", sans-serif;
   overflow-y: scroll;
 }
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  position: absolute;
+  width: 39.17vh;
+  height:  56.7vh;
+  border-radius: 50px;
+  background-color: var(--background-one);
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+}
+.todoForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 38.65vh;
+  height: 56.18vh;
+  padding: 25px;
+  margin: 0;
+  border-radius: 50px;
+  box-shadow: 0 2px 5px #f5f5f5; 
+  color: var(--primary-text);
+  font-size: 12px;
+}
+.todoForm p {
+  margin: 10px 0 2px;
+  font-weight: 400;
+  font-size: 14px;
+}
+.todoForm h2 {
+  text-align: center;
+}
+.todoForm textarea {
+  min-height: 40px;
+  padding: 2;
+  width: calc(100% - 6px);
+}
+.todoForm select, .todoForm input {
+  padding: 4px 0;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background: var(--secondary-text);
+  font-size: inherit;
+}
+option {
+  background: #fff;
+}
+.todoForm input {
+  margin-top: 10px;
+}
+.todoForm button {
+  align-self: center;
+  width: 150px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  -webkit-border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  border-radius: 5px; 
+  background-color: var(--background-one);
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;  
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  margin-top: 10px;
+}
+.todoForm button:hover, .todoForm .closebtn:hover {
+  color: var(--background-two);
+}
+.todoForm .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 24px;
+  margin-left: 50px;
+  text-decoration: none;
+  color: inherit;
+}  
 .list {
   display: flex;
   flex-direction: column;
@@ -369,11 +459,40 @@ main {
   .time, .modify, .delete {
     padding: 20px 13px;
   }
+  .formContainer {
+    width: 70%;
+    height:  85%;
+  }
+  .todoForm {
+    width: 99%;
+    height:  99%;
+    overflow-y: scroll;
+  }
 }
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  .signin, .checkLabel {
+  .formContainer {
+    width: 60%;
+    height:  auto;
+  }
+  .todoForm {
+    height: auto;
+    overflow-y: unset;
+  }
+  .todoForm select, .todoForm input {
+    padding: 5px 0;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background: var(--secondary-text);
+  }
+  .signin, .checkLabel, .todoForm, .todoForm textarea {
     font-size: 14px;
+  }
+  .todoForm p, .todoForm button, .sidenav a, .dropdown {
+    font-size: 16px;
+  }
+  .todoForm .closebtn {
+    font-size: 36px;
   }
   .switch {
     width: 30px;
@@ -389,9 +508,6 @@ main {
     -webkit-transform: translateX(13px);
     -ms-transform: translateX(13px);
     transform: translateX(13px);
-  }
-  .sidenav a, .dropdown {
-    font-size: 16px;
   }
   .list {
     width: 80%;
@@ -420,23 +536,31 @@ main {
   }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .sidenav a, .dropdown, .signin {
+  .sidenav a, .dropdown, .signin, .todoForm p, .todoForm button {
     font-size: 18px;
   }
-  .checkLabel {
+  .checkLabel, .signin, .todoForm {
     font-size: 16px;
   }
 }
 /* Extra large devices (large desktops, 12200px and up) */
 @media (min-width: 1200px) {
-  .sidenav a, .dropdown, .signin {
+  .formContainer {
+    width: 61.03vh;
+    height:  56.7vh;
+  }
+  .todoForm {
+    width: 60.52vh;
+    height: 56.18vh;
+  }
+  .sidenav a, .dropdown, .signin, .todoForm p, .todoForm button {
     font-size: 20px;
   }
   .list {
     width: 80%;
     max-width: 1200px;
   }
-  .checkLabel {
+  .checkLabel, .signin, .todoForm, .todoForm textarea {
     font-size: 18px;
   }
   .labelDisc:after {

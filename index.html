@@ -26,7 +26,7 @@
             <a href="#">Month</a>
             <div class="dropdown"> Project Select
               <i class="fa fa-caret-down"></i>
-              <button id="addProject" class="fa fa-plus addProject"></button>
+              <button id="addProject" class="fa fa-plus addProject myInput"></button>
               <div class="dropdown-content">
                 <label class="project">
                   <input type="checkbox">
@@ -102,7 +102,32 @@
                 <a href="https://github.com/timjacksonm"><img src="images/GitHub-Mark-Light-32px.png" style="height: 3vh; width: 3vh;"> </a>
             </div>
         </footer>
-    </div>
+        <div class="filter"></div>
+        <div class="formContainer">
+          <form class="todoForm" action="/">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeForm()">&times;</a>
+            <h2>New ToDo</h2>
+            <p>Project Select</p>
+            <select>
+              <option value="0">*Default*</option>
+              <option value="1">Audi</option>
+              <option value="2">BMW</option>
+              <option value="3">Citroen</option>
+              <option value="4">Ford</option>
+              <option value="5">Honda</option>
+            </select>
+            <p>Priority level</p>
+            <select>
+              <option value="0">Low</option>
+              <option value="1">Medium</option>
+              <option value="2">High</option>
+            </select>
+            <p>Discription</p>
+            <textarea rows="4"></textarea>
+            <input type="text" name="name" placeholder="mm/dd/yyyy -:-- --">
+            <button type="submit" href="/">Submit</button>
+          </form>
+        </div>
     <script src="main.js"></script>
     <script>
         function openNav() {
