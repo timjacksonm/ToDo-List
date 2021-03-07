@@ -5,8 +5,10 @@ let myToDos = [];
 const todo1 = new ToDo('Chores','Red', 'yes', 'Cook Dinner', 'Time');
 const todo2 = new ToDo('School','Orange', 'no', 'Feed Dog', 'Time');
 const todo3 = new ToDo('Work','Green', 'no', 'Shovel Snow', 'Time');
+myProjects.push(todo1.project, todo2.project, todo3.project);
 myToDos.push(todo1, todo2, todo3);
 console.log(myToDos);
+console.log(myProjects);
 
 class display {
     static get appendAllTodos() {
@@ -29,6 +31,16 @@ class display {
             selectContainer.lastChild.firstChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
             selectContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
+        }
+    }
+    static get appendAllProjects() {
+        const selectNavContainer = document.querySelector('#projContainer');
+        for (let i = 0; i < myProjects.length; i++) {
+            selectNavContainer.appendChild(document.createElement('label')).className = 'projectListing';
+            selectNavContainer.lastChild.appendChild(document.createElement('input')).setAttribute('name', 'radio');
+            selectNavContainer.lastChild.querySelector('input').type = 'radio';
+            selectNavContainer.lastChild.appendChild(document.createElement('span')).className = 'projSelect';
+            selectNavContainer.lastChild.querySelector('.projSelect').textContent = myProjects[i];
         }
     }
     static get openNav() {
