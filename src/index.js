@@ -60,4 +60,4 @@ class screenEvent {
     }
 }
 
-export { myProjects, myToDos, screenEvent };
+export { myProjects, myToDos, screenEvent, projectSelected };

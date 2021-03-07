@@ -1,4 +1,4 @@
-import { screenEvent, myProjects, myToDos } from './index';
+import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 
 class display {
     static appendAllTodos(projectName) {
@@ -55,11 +55,11 @@ class display {
         select.appendChild(document.createElement('p')).textContent = 'Project select'
         select.appendChild(document.createElement('select')).id = 'projectChoice';
         select = document.querySelector('#projectChoice');
-         //need loop here once project array is working
-        select.appendChild(document.createElement('option')).textContent = 'Default';
-        select.appendChild(document.createElement('option')).textContent = 'School';
-        select.appendChild(document.createElement('option')).textContent = 'Chores';
-        select.appendChild(document.createElement('option')).textContent = 'Work';
+         for (let i = 0; i < myProjects.length; i++) {
+            select.appendChild(document.createElement('option')).textContent = myProjects[i];
+         }
+         screenEvent.checkProjectSelect;
+         select.value = projectSelected;
         select = document.querySelector('.todoForm');
         select.appendChild(document.createElement('p')).textContent = 'Priority level';
         select.appendChild(document.createElement('select')).id = 'priorityChoice';
