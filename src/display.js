@@ -5,16 +5,23 @@ let myToDos = [];
 const todo1 = new ToDo('Chores','Red', 'yes', 'Cook Dinner', 'Time');
 const todo2 = new ToDo('School','Orange', 'no', 'Feed Dog', 'Time');
 const todo3 = new ToDo('Work','Green', 'no', 'Shovel Snow', 'Time');
-myProjects.push(todo1.project, todo2.project, todo3.project);
-myToDos.push(todo1, todo2, todo3);
+const todo4 = new ToDo('Default', 'Green', 'yes', 'todo discription', 'Time');
+const todo5 = new ToDo('Default', 'Red', 'no', 'test 1234', 'Time');
+const todo6 = new ToDo('Default', 'Green', 'no', 'zander the cat', 'Time');
+const todo7 = new ToDo('Default', 'Red', 'no', 'bandit the dog', 'Time');
+const todo8 = new ToDo('Default', 'Orange', 'no', 'todo discription', 'Time');
+const todo9 = new ToDo('Default', 'Orange', 'no', 'asldfjasldfjsfd', 'Time');
+myProjects.push('Default', todo1.project, todo2.project, todo3.project);
+myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 console.log(myToDos);
 console.log(myProjects);
 
 class display {
-    static get appendAllTodos() {
+    static appendAllTodos(projectName) {
         const selectContainer = document.querySelector('#todoContainer');
-
+        
         for (let i = 0; i < myToDos.length; i++) {
+            if (myToDos[i].project == projectName) {
             selectContainer.appendChild(document.createElement('li')).className = 'listItem';
             selectContainer.lastChild.appendChild(document.createElement('label')).className = 'checkLabel';
             selectContainer.lastChild.querySelector('.checkLabel').setAttribute('for', `${i}`);
@@ -31,6 +38,7 @@ class display {
             selectContainer.lastChild.firstChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
             selectContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
+            }
         }
     }
     static get appendAllProjects() {
@@ -106,4 +114,4 @@ class display {
         }
     }
 };
-export { display };
+export { display, myProjects };
