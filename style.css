@@ -174,7 +174,7 @@ input:checked + .slider:before {
   color: var(--primary-text);
 }
 /* The container */
-.ProjectListing {
+.projectListing {
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -184,7 +184,7 @@ input:checked + .slider:before {
   -ms-user-select: none;
   user-select: none;
 }
-.ProjectListing input {
+.projectListing input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -193,11 +193,11 @@ input:checked + .slider:before {
   width: 100%;
   text-align: center;
 }
-.ProjectListing:hover input ~ .projSelect {
+.projectListing:hover input ~ .projSelect {
   background-color: var(--hover-color);
   border: 1px solid var(--secondary-text);
 }
-.ProjectListing input:checked ~ .projSelect {
+.projectListing input:checked ~ .projSelect {
   background-color: var(--background-one);
   color: var(--background-two);
   border: 1px solid var(--background-two);
