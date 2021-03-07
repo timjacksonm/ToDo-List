@@ -1,7 +1,5 @@
 import { display } from './display';
-import _ from 'date-fns'
 import { ToDo } from './todotask';
-import { faIR } from 'date-fns/locale';
 
 let myProjects = [];
 let myToDos = [];
@@ -20,7 +18,50 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 console.log(myToDos);
 console.log(myProjects);
 
-display.appendAllProjects;
+class screenEvent {
+    static get getNewProject() {
+        const projectContainer = document.querySelector('#projContainer');
+        projectContainer.querySelector('#newProjForm').addEventListener('submit', (e)=>{
+            e.preventDefault();
+            myProjects.push(e.target.firstChild.value);
+            display.removeProjectForm;
+            display.appendAllProjects;
+            this.addProjectListeners;
+        });
+    }
+    static get addProjectListeners() {
+        const selectProjects = document.querySelector('#projContainer');
+        console.log('test');
+        for (let i = 0; i < myProjects.length; i++) {
+            selectProjects.children[i].addEventListener('click', ()=>{
+                todoContainer.innerHTML = '';
+                display.appendAllTodos(myProjects[i])
+            });
+        } 
+    }
+    static get addFormListener() {
+        const select = document.querySelector('.todoForm');
+        select.querySelector('.closebtn').addEventListener('click', ()=>{display.closeToDoForm});
+        select.querySelector('#Submit').addEventListener('click', (e)=>{
+            e.preventDefault();
+            this.getNewToDo;
+            display.closeToDoForm;
+            this.checkProjectSelect;
+            display.appendAllTodos(projectSelected);
+        });
+    }
+    static get getNewToDo() {
+        const formSelect = document.querySelector('.todoForm');
+        myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
+    }
+    static get checkProjectSelect() {
+        document.querySelector('#projContainer').querySelectorAll('label').forEach(label => {
+             if (label.querySelector('input').checked == true) {
+                 return projectSelected = label.lastChild.textContent
+                }
+            })
+    }
+}
 
 (function winLoad(){
     const addProject = document.getElementById('addProject');
@@ -34,30 +75,12 @@ display.appendAllProjects;
     sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
     openNav.addEventListener('click', ()=>{display.openNav});
     closeNav.addEventListener('click', ()=>{display.closeNav});
-    addProject.addEventListener('click',  ()=>{run()});
+    addProject.addEventListener('click',  ()=>{display.newProjectForm});
     addToDo.addEventListener('click', ()=>{display.newToDoForm;});
+    display.appendAllProjects;
     document.querySelector('#projContainer').firstElementChild.firstChild.checked = "checked";
     display.appendAllTodos('Default');
-
-    for (let i = 0; i < myProjects.length; i++) {
-        selectProjects.children[i].addEventListener('click', ()=>{todoContainer.innerHTML = ''; display.appendAllTodos(myProjects[i])});
-    } 
+    screenEvent.addProjectListeners;
 })();
-
-class screenEvent {
-    static get addFormListener() {
-        const select = document.querySelector('.todoForm');
-        select.querySelector('.closebtn').addEventListener('click', ()=>{display.closeToDoForm});
-        select.querySelector('#Submit').addEventListener('click', (e)=>{e.preventDefault(); this.getNewToDo; display.closeToDoForm; this.checkProjectSelect; display.appendAllTodos(projectSelected);});
-    }
-    static get getNewToDo() {
-        const formSelect = document.querySelector('.todoForm');
-        myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
-    }
-    static get checkProjectSelect() {
-        document.querySelector('#projContainer').querySelectorAll('label').forEach(label => {
-             if (label.querySelector('input').checked == true) { return projectSelected = label.lastChild.textContent }})
-    }
-}
 
 export { myProjects, myToDos, screenEvent, projectSelected };

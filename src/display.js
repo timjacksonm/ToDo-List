@@ -28,6 +28,8 @@ class display {
     }
     static get appendAllProjects() {
         const selectNavContainer = document.querySelector('#projContainer');
+        selectNavContainer.innerHTML = '';
+
         for (let i = 0; i < myProjects.length; i++) {
             selectNavContainer.appendChild(document.createElement('label')).className = 'projectListing';
             selectNavContainer.lastChild.appendChild(document.createElement('input')).setAttribute('name', 'radio');
@@ -38,10 +40,22 @@ class display {
     }
     static get openNav() {
         document.getElementById("mySidenav").style.width = "25vh";
-      }
+    }
     static get closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-      }
+    }
+    static get newProjectForm() {
+        const projectContainer = document.querySelector('#projContainer');
+        projectContainer.appendChild(document.createElement('form')).id = 'newProjForm';
+        projectContainer.querySelector('#newProjForm').setAttribute('submit', 'e.preventDefault();')
+        projectContainer.lastChild.appendChild(document.createElement('input')).value = 'New Project';
+        projectContainer.lastChild.lastChild.type = 'text';
+        projectContainer.lastChild.lastChild.focus();
+        screenEvent.getNewProject;
+    }
+    static get removeProjectForm() {
+        document.querySelector('#projContainer').lastChild.innerHTML = '';
+    }
     static get newToDoForm() {
         let select = document.querySelector('#content');
         select.appendChild(document.createElement('div')).className = 'filter';
