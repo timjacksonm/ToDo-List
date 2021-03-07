@@ -173,29 +173,35 @@ input:checked + .slider:before {
   align-self: center;
   color: var(--primary-text);
 }
-.project {
-  display: block;
-  position: relative;
+/* The container */
+.ProjectListing {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
   font-size: 22px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-.proName {
- text-align: center;
+.ProjectListing input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
 }
-.project input:checked ~ .proName {
-  background-color: var(--secondary-text);
-  color: var(--background-one);
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
+.projSelect {
+  width: 100%;
+  text-align: center;
 }
-.project input:checked ~ .proName:hover {
+.ProjectListing:hover input ~ .projSelect {
+  background-color: var(--hover-color);
+  border: 1px solid var(--secondary-text);
+}
+.ProjectListing input:checked ~ .projSelect {
+  background-color: var(--background-one);
   color: var(--background-two);
+  border: 1px solid var(--background-two);
+  border-radius: 5px;
 }
 /* MAIN | CENTER OF PAGE  */
 main {
