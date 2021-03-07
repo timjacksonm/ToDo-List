@@ -1,25 +1,10 @@
-import { ToDo } from './todotask';
-import { Project } from './project';
-let myProjects = [];
-let myToDos = [];
-const todo1 = new ToDo('Chores','Red', 'yes', 'Cook Dinner', 'Time');
-const todo2 = new ToDo('School','Orange', 'no', 'Feed Dog', 'Time');
-const todo3 = new ToDo('Work','Green', 'no', 'Shovel Snow', 'Time');
-const todo4 = new ToDo('Default', 'Green', 'yes', 'todo discription', 'Time');
-const todo5 = new ToDo('Default', 'Red', 'no', 'test 1234', 'Time');
-const todo6 = new ToDo('Default', 'Green', 'no', 'zander the cat', 'Time');
-const todo7 = new ToDo('Default', 'Red', 'no', 'bandit the dog', 'Time');
-const todo8 = new ToDo('Default', 'Orange', 'no', 'todo discription', 'Time');
-const todo9 = new ToDo('Default', 'Orange', 'no', 'asldfjasldfjsfd', 'Time');
-myProjects.push('Default', todo1.project, todo2.project, todo3.project);
-myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
-console.log(myToDos);
-console.log(myProjects);
+import { screenEvent, myProjects, myToDos } from './index';
 
 class display {
     static appendAllTodos(projectName) {
         const selectContainer = document.querySelector('#todoContainer');
-        
+        selectContainer.innerHTML = '';
+       
         for (let i = 0; i < myToDos.length; i++) {
             if (myToDos[i].project == projectName) {
             selectContainer.appendChild(document.createElement('li')).className = 'listItem';
@@ -71,7 +56,7 @@ class display {
         select.appendChild(document.createElement('select')).id = 'projectChoice';
         select = document.querySelector('#projectChoice');
          //need loop here once project array is working
-        select.appendChild(document.createElement('option')).textContent = '*Default*';
+        select.appendChild(document.createElement('option')).textContent = 'Default';
         select.appendChild(document.createElement('option')).textContent = 'School';
         select.appendChild(document.createElement('option')).textContent = 'Chores';
         select.appendChild(document.createElement('option')).textContent = 'Work';
@@ -79,9 +64,12 @@ class display {
         select.appendChild(document.createElement('p')).textContent = 'Priority level';
         select.appendChild(document.createElement('select')).id = 'priorityChoice';
         select = document.querySelector('#priorityChoice');
-        select.appendChild(document.createElement('option')).textContent = 'low';
+        select.appendChild(document.createElement('option')).textContent = 'Low';
+        select.options[0].value = 'Green';
         select.appendChild(document.createElement('option')).textContent = 'Medium';
+        select.options[1].value = 'Orange';
         select.appendChild(document.createElement('option')).textContent = 'High';
+        select.options[2].value = 'Red';
         select = document.querySelector('.todoForm');
         select.appendChild(document.createElement('p')).textContent = 'Discription';
         select.appendChild(document.createElement('textarea')).setAttribute('rows', '4');
@@ -90,6 +78,12 @@ class display {
         select.querySelector('input').type = 'datetime-local';
         select.appendChild(document.createElement('button')).id = 'Submit';
         select.querySelector('#Submit').textContent = 'Submit';
+
+        screenEvent.addFormListener;
+    }
+    static get closeToDoForm() {
+        document.querySelector('#content').removeChild(document.querySelector('.formContainer'));
+        document.querySelector('#content').removeChild(document.querySelector('.filter'));
     }
     static get toggleLightDark() {
         const root = document.documentElement;
@@ -114,4 +108,4 @@ class display {
         }
     }
 };
-export { display, myProjects };
+export { display };
