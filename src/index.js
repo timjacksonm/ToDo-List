@@ -14,15 +14,15 @@ let myProjects = [];
 let myToDos = [];
 let projectSelected = '';
 
-const todo1 = new ToDo('Chores','Red', 'yes', 'Cook Dinner', 'Time');
-const todo2 = new ToDo('School','Orange', 'no', 'Feed Dog', 'Time');
-const todo3 = new ToDo('Work','Green', 'no', 'Shovel Snow', 'Time');
-const todo4 = new ToDo('Default', 'Green', 'yes', 'todo discription', 'Time');
-const todo5 = new ToDo('Default', 'Red', 'no', 'test 1234', 'Time');
-const todo6 = new ToDo('Default', 'Green', 'no', 'zander the cat', 'Time');
-const todo7 = new ToDo('Default', 'Red', 'no', 'bandit the dog', 'Time');
-const todo8 = new ToDo('Default', 'Orange', 'no', 'todo discription', 'Time');
-const todo9 = new ToDo('Default', 'Orange', 'no', 'asldfjasldfjsfd', 'Time');
+const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', 'Time');
+const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', 'Time');
+const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', 'Time');
+const todo4 = new ToDo('Default', 'Green', 'false', 'todo discription', 'Time');
+const todo5 = new ToDo('Default', 'Red', 'false', 'test 1234', 'Time');
+const todo6 = new ToDo('Default', 'Green', 'false', 'zander the cat', 'Time');
+const todo7 = new ToDo('Default', 'Red', 'false', 'bandit the dog', 'Time');
+const todo8 = new ToDo('Default', 'Orange', 'false', 'todo discription', 'Time');
+const todo9 = new ToDo('Default', 'Orange', 'false', 'asldfjasldfjsfd', 'Time');
 myProjects.push('Default', todo1.project, todo2.project, todo3.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 console.log(myToDos);
@@ -47,6 +47,39 @@ class screenEvent {
             });
         } 
     }
+    static get addTodoListeners() {
+        const checkBoxs = todoContainer.querySelectorAll('input');
+        const modifyButton = document.querySelectorAll('.modify');
+        const deleteButton = document.querySelectorAll('.delete');
+
+        checkBoxs.forEach(input => {
+            input.addEventListener('change', (e)=>{
+                let key = e.target.id;
+                myToDos[key].setChecked(e.target.checked);
+                console.log(myToDos[key]);
+            })
+        })
+       
+        modifyButton.forEach(button => {button.addEventListener('click', ()=>{
+            console.log('modifybuttontest')
+        })
+    });
+        deleteButton.forEach(button => {button.addEventListener('click', (e)=>{
+            let key = '';
+            if(e.target.className == 'fa fa-trash') {
+               key = e.target.parentNode.id.charAt(0);
+               myToDos.splice(key, 1);
+               this.checkProjectSelect;
+               display.appendAllTodos(projectSelected);
+            }else {
+                key = e.target.id.charAt(0);
+                myToDos.splice(key, 1);
+                this.checkProjectSelect;
+                display.appendAllTodos(projectSelected);
+            }
+        })
+    });
+}
     static addFormListener(formName) {
         const formSelect = document.querySelector('.' + formName);
         formSelect.querySelector('.closebtn').addEventListener('click', ()=>{forms.closeToDoForm});

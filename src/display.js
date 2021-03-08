@@ -10,6 +10,7 @@ class display {
         for (let i = 0; i < myToDos.length; i++) {
             if (myToDos[i].project == projectName) {
             selectContainer.appendChild(document.createElement('li')).className = 'listItem';
+            selectContainer.lastChild.id = 'task' + i;
             selectContainer.lastChild.appendChild(document.createElement('label')).className = 'checkLabel';
             selectContainer.lastChild.querySelector('.checkLabel').setAttribute('for', `${i}`);
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'priority';
@@ -19,17 +20,22 @@ class display {
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
             selectContainer.lastChild.querySelector('.labelDisc').textContent = myToDos[i].discription;
+            selectContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'time';
             selectContainer.lastChild.querySelector('.time').textContent = myToDos[i].time;
+            selectContainer.lastChild.querySelector('.time').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'modify';
-            selectContainer.lastChild.firstChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
+            selectContainer.lastChild.querySelector('.modify').id = i + 'modify';
+            selectContainer.lastChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
+            selectContainer.lastChild.querySelector('.delete').id = i + 'delete';
             selectContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
             //eventListeners
             selectContainer.querySelectorAll('.labelDisc')[num].addEventListener('click', ()=>{display.discription});
             num++;
             }
         }
+        screenEvent.addTodoListeners;
     }
     static get appendAllProjects() {
         const selectNavContainer = document.querySelector('#projContainer');
