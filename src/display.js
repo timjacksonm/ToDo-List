@@ -5,7 +5,6 @@ class display {
     static appendAllTodos(projectName) {
         const selectContainer = document.querySelector('#todoContainer');
         selectContainer.innerHTML = '';
-        let num = 0;
        
         for (let i = 0; i < myToDos.length; i++) {
             if (myToDos[i].project == projectName) {
@@ -17,6 +16,7 @@ class display {
             selectContainer.lastChild.querySelector('.priority').style.backgroundColor = myToDos[i].priority;
             selectContainer.lastChild.firstChild.appendChild(document.createElement('input')).id = i;
             document.getElementById(i).setAttribute('type', 'checkbox');
+            if(myToDos[i].checked == 'true' || myToDos[i].checked == true){document.getElementById(i).checked = true;}
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
             selectContainer.lastChild.querySelector('.labelDisc').textContent = myToDos[i].discription;
@@ -30,9 +30,6 @@ class display {
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
             selectContainer.lastChild.querySelector('.delete').id = i + 'delete';
             selectContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
-            //eventListeners
-            selectContainer.querySelectorAll('.labelDisc')[num].addEventListener('click', ()=>{display.discription});
-            num++;
             }
         }
         screenEvent.addTodoListeners;

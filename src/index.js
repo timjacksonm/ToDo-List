@@ -49,34 +49,42 @@ class screenEvent {
     }
     static get addTodoListeners() {
         const checkBoxs = todoContainer.querySelectorAll('input');
+        const discrButton = todoContainer.querySelectorAll('.labelDisc');
         const modifyButton = document.querySelectorAll('.modify');
         const deleteButton = document.querySelectorAll('.delete');
-
+//When checkBox is checked - updates myToDos Array - updates DOM
         checkBoxs.forEach(input => {
             input.addEventListener('change', (e)=>{
                 let key = e.target.id;
                 myToDos[key].setChecked(e.target.checked);
-                console.log(myToDos[key]);
             })
-        })
-       
+        });
+//When the discription of a todo is clicked. Opens window displaying more information.
+        discrButton.forEach(disc => {
+            disc.addEventListener('click', ()=>{
+                display.discription;
+            });
+        });
+//When modify button is clicked. Opens window allowing changes to the current ToDo.
         modifyButton.forEach(button => {button.addEventListener('click', ()=>{
             console.log('modifybuttontest')
         })
     });
-        deleteButton.forEach(button => {button.addEventListener('click', (e)=>{
-            let key = '';
-            if(e.target.className == 'fa fa-trash') {
-               key = e.target.parentNode.id.charAt(0);
-               myToDos.splice(key, 1);
-               this.checkProjectSelect;
-               display.appendAllTodos(projectSelected);
-            }else {
-                key = e.target.id.charAt(0);
-                myToDos.splice(key, 1);
-                this.checkProjectSelect;
-                display.appendAllTodos(projectSelected);
-            }
+//When delete button is clicked. updates myToDos Array - updates DOM
+        deleteButton.forEach(button => {
+            button.addEventListener('click', (e)=>{
+                let key = '';
+                if(e.target.className == 'fa fa-trash') {
+                   key = e.target.parentNode.id.charAt(0);
+                   myToDos.splice(key, 1);
+                   this.checkProjectSelect;
+                   display.appendAllTodos(projectSelected);
+                }else {
+                    key = e.target.id.charAt(0);
+                    myToDos.splice(key, 1);
+                    this.checkProjectSelect;
+                    display.appendAllTodos(projectSelected);
+                }
         })
     });
 }
