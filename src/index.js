@@ -2,9 +2,18 @@ import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
 
+const addProject = document.getElementById('addProject');
+const addToDo =  document.getElementById('newTodo');
+const closeNav = document.getElementById('closeNav');
+const openNav = document.getElementById('openNav');
+const sliderToggle = document.getElementById('sliderToggle');
+const projectContainer = document.querySelector('#projContainer');
+const todoContainer = document.querySelector('#todoContainer');
+
 let myProjects = [];
 let myToDos = [];
 let projectSelected = '';
+
 const todo1 = new ToDo('Chores','Red', 'yes', 'Cook Dinner', 'Time');
 const todo2 = new ToDo('School','Orange', 'no', 'Feed Dog', 'Time');
 const todo3 = new ToDo('Work','Green', 'no', 'Shovel Snow', 'Time');
@@ -18,11 +27,9 @@ myProjects.push('Default', todo1.project, todo2.project, todo3.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 console.log(myToDos);
 console.log(myProjects);
-const addProject = document.getElementById('addProject');
 
 class screenEvent {
     static get getNewProject() {
-        const projectContainer = document.querySelector('#projContainer');
         projectContainer.querySelector('#newProjForm').addEventListener('submit', (e)=>{
             e.preventDefault();
             myProjects.push(e.target.firstChild.value);
@@ -30,28 +37,28 @@ class screenEvent {
             display.appendAllProjects;
             this.addProjectListeners;
             addProject.disabled = false;
-            console.log('after');
         });
     }
     static get addProjectListeners() {
-        const selectProjects = document.querySelector('#projContainer');
         for (let i = 0; i < myProjects.length; i++) {
-            selectProjects.children[i].addEventListener('click', ()=>{
-                todoContainer.innerHTML = '';
-                display.appendAllTodos(myProjects[i])
+            projectContainer.children[i].addEventListener('click', ()=>{
+            todoContainer.innerHTML = '';
+            display.appendAllTodos(myProjects[i])
             });
         } 
     }
-    static get addFormListener() {
-        const select = document.querySelector('.todoForm');
-        select.querySelector('.closebtn').addEventListener('click', ()=>{forms.closeToDoForm});
-        select.querySelector('#Submit').addEventListener('click', (e)=>{
+    static addFormListener(formName) {
+        const formSelect = document.querySelector('.' + formName);
+        formSelect.querySelector('.closebtn').addEventListener('click', ()=>{forms.closeToDoForm});
+        if(formName != 'formDisc') {
+        formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
             e.preventDefault();
             this.getNewToDo;
             forms.closeToDoForm;
             this.checkProjectSelect;
             display.appendAllTodos(projectSelected);
         });
+        }
     }
     static get getNewToDo() {
         const formSelect = document.querySelector('.todoForm');
@@ -65,15 +72,7 @@ class screenEvent {
             })
     }
 }
-
 (function winLoad(){
-    const addToDo =  document.getElementById('newTodo');
-    const closeNav = document.getElementById('closeNav');
-    const openNav = document.getElementById('openNav');
-    const sliderToggle = document.getElementById('sliderToggle');
-    const selectProjects = document.querySelector('#projContainer');
-    const todoContainer = document.querySelector('#todoContainer');
-    
     sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
     openNav.addEventListener('click', ()=>{display.openNav});
     closeNav.addEventListener('click', ()=>{display.closeNav});

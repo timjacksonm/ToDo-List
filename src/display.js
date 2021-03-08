@@ -1,9 +1,11 @@
+import { forms } from './forms';
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 
 class display {
     static appendAllTodos(projectName) {
         const selectContainer = document.querySelector('#todoContainer');
         selectContainer.innerHTML = '';
+        let num = 0;
        
         for (let i = 0; i < myToDos.length; i++) {
             if (myToDos[i].project == projectName) {
@@ -23,6 +25,9 @@ class display {
             selectContainer.lastChild.firstChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
             selectContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
+            //eventListeners
+            selectContainer.querySelectorAll('.labelDisc')[num].addEventListener('click', ()=>{display.discription});
+            num++;
             }
         }
     }
@@ -65,6 +70,19 @@ class display {
         root.style.setProperty('--primary-text', '#F7F7F7');
         root.style.setProperty('--secondary-text', '#DFE3EE');
         }
+    }
+    static get discription() {
+        let select = document.querySelector('#content');
+        select.appendChild(document.createElement('div')).className = 'filter';
+        select.appendChild(document.createElement('div')).className = 'formContainer';
+        select.lastChild.appendChild(document.createElement('form')).className = 'formDisc';
+        select = document.querySelector('.formDisc');
+        select.appendChild(document.createElement('button')).className = 'closebtn';
+        select.querySelector('.closebtn').setAttribute('type', 'reset');
+        select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
+        select.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
+        select.appendChild(document.createElement('p')).textContent = 'duno';
+        screenEvent.addFormListener('formDisc');
     }
 };
 export { display };

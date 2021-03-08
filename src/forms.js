@@ -37,7 +37,7 @@ class forms {
         select.appendChild(document.createElement('button')).id = 'Submit';
         select.querySelector('#Submit').textContent = 'Submit';
 
-        screenEvent.addFormListener;
+        screenEvent.addFormListener('todoForm');
     }
     static get closeToDoForm() {
         document.querySelector('#content').removeChild(document.querySelector('.formContainer'));
