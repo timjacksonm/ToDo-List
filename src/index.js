@@ -1,5 +1,6 @@
 import { display } from './display';
 import { ToDo } from './todotask';
+import { forms } from './forms';
 
 let myProjects = [];
 let myToDos = [];
@@ -17,6 +18,7 @@ myProjects.push('Default', todo1.project, todo2.project, todo3.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 console.log(myToDos);
 console.log(myProjects);
+const addProject = document.getElementById('addProject');
 
 class screenEvent {
     static get getNewProject() {
@@ -24,14 +26,15 @@ class screenEvent {
         projectContainer.querySelector('#newProjForm').addEventListener('submit', (e)=>{
             e.preventDefault();
             myProjects.push(e.target.firstChild.value);
-            display.removeProjectForm;
+            forms.removeProjectForm;
             display.appendAllProjects;
             this.addProjectListeners;
+            addProject.disabled = false;
+            console.log('after');
         });
     }
     static get addProjectListeners() {
         const selectProjects = document.querySelector('#projContainer');
-        console.log('test');
         for (let i = 0; i < myProjects.length; i++) {
             selectProjects.children[i].addEventListener('click', ()=>{
                 todoContainer.innerHTML = '';
@@ -41,11 +44,11 @@ class screenEvent {
     }
     static get addFormListener() {
         const select = document.querySelector('.todoForm');
-        select.querySelector('.closebtn').addEventListener('click', ()=>{display.closeToDoForm});
+        select.querySelector('.closebtn').addEventListener('click', ()=>{forms.closeToDoForm});
         select.querySelector('#Submit').addEventListener('click', (e)=>{
             e.preventDefault();
             this.getNewToDo;
-            display.closeToDoForm;
+            forms.closeToDoForm;
             this.checkProjectSelect;
             display.appendAllTodos(projectSelected);
         });
@@ -64,7 +67,6 @@ class screenEvent {
 }
 
 (function winLoad(){
-    const addProject = document.getElementById('addProject');
     const addToDo =  document.getElementById('newTodo');
     const closeNav = document.getElementById('closeNav');
     const openNav = document.getElementById('openNav');
@@ -75,8 +77,8 @@ class screenEvent {
     sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
     openNav.addEventListener('click', ()=>{display.openNav});
     closeNav.addEventListener('click', ()=>{display.closeNav});
-    addProject.addEventListener('click',  ()=>{display.newProjectForm});
-    addToDo.addEventListener('click', ()=>{display.newToDoForm;});
+    addProject.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
+    addToDo.addEventListener('click', ()=>{forms.newToDoForm;});
     window.addEventListener('click', (e)=>{
         if (e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
             display.closeNav;
