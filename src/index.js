@@ -77,6 +77,11 @@ class screenEvent {
     closeNav.addEventListener('click', ()=>{display.closeNav});
     addProject.addEventListener('click',  ()=>{display.newProjectForm});
     addToDo.addEventListener('click', ()=>{display.newToDoForm;});
+    window.addEventListener('click', (e)=>{
+        if (e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
+            display.closeNav;
+        }
+    });
     display.appendAllProjects;
     document.querySelector('#projContainer').firstElementChild.firstChild.checked = "checked";
     display.appendAllTodos('Default');
