@@ -127,7 +127,7 @@ input:checked + .slider:before {
   padding-top: 60px;
   transition: width 0.5s;
 }
-.sidenav a, .dropdown {
+.sidenav a, .dropdown, .sortChoice {
   padding: 8px;
   text-decoration: none;
   font-size: 14px;
@@ -177,11 +177,16 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.sortChoice {
+  padding: 0 1px 0 8px;
+}
+.sortSelect, .projSelect {
+  padding: 8px;
 }
 .projectListing input, .sortChoice input {
   position: absolute;
@@ -189,7 +194,6 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 .projSelect {
-  width: 100%;
   text-align: center;
 }
 .projectListing:hover input ~ .projSelect, .sortChoice:hover input ~ .sortSelect {
@@ -483,7 +487,7 @@ option {
   .signin, .checkLabel, .todoForm, .todoForm textarea {
     font-size: 14px;
   }
-  .todoForm p, .todoForm button, .sidenav a, .dropdown {
+  .todoForm p, .todoForm button, .sidenav a, .dropdown, .sortChoice {
     font-size: 16px;
   }
   .switch {
@@ -528,7 +532,7 @@ option {
   }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .sidenav a, .dropdown, .signin, .todoForm p, .todoForm button {
+  .sidenav a, .dropdown, .sortChoice, .signin, .todoForm p, .todoForm button {
     font-size: 18px;
   }
   .checkLabel, .signin, .todoForm {
@@ -545,7 +549,7 @@ option {
     width: 60.52vh;
     height: 56.18vh;
   }
-  .sidenav a, .dropdown, .signin, .todoForm p, .todoForm button {
+  .sidenav a, .dropdown, .sortChoice, .signin, .todoForm p, .todoForm button {
     font-size: 20px;
   }
   .list {
