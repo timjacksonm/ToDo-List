@@ -1,12 +1,12 @@
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 class forms {
-    static todoForm(status, e) {
+    static todoForm(status, clickevent) {
         let key = '';
         if(status == 'modify') {
-            if(e.target.className == 'fa fa-pencil-square-o') {
-                key = e.target.parentNode.id.charAt(0);
+            if(clickevent.target.className == 'fa fa-pencil-square-o') {
+                key = clickevent.target.parentNode.id.charAt(0);
              }else {
-                 key = e.target.id.charAt(0);
+                 key = clickevent.target.id.charAt(0);
              }
         }
         let select = document.querySelector('#content');
@@ -57,8 +57,12 @@ class forms {
         }
         select.appendChild(document.createElement('button')).id = 'Submit';
         select.querySelector('#Submit').textContent = 'Submit';
-
-        screenEvent.addFormListener('todoForm');
+        if(status == 'new') {
+            screenEvent.addFormListener('new', 'none');
+        }else if(status == 'disc') {
+        }else {
+            screenEvent.addFormListener('modify', key);
+        }
     }
     static get closeToDoForm() {
         document.querySelector('#content').removeChild(document.querySelector('.formContainer'));

@@ -88,22 +88,46 @@ class screenEvent {
         })
     });
 }
-    static addFormListener(formName) {
-        const formSelect = document.querySelector('.' + formName);
+    static addFormListener(status, key) {
+        const formSelect = document.querySelector('.todoForm');
         formSelect.querySelector('.closebtn').addEventListener('click', ()=>{forms.closeToDoForm});
-        if(formName != 'formDisc') {
-        formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
-            e.preventDefault();
-            this.getNewToDo;
-            forms.closeToDoForm;
-            this.checkProjectSelect;
-            display.appendAllTodos(projectSelected);
-        });
+        switch (status) {
+            case 'new':
+                formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
+                    e.preventDefault();
+                    this.getToDoFormData('new', 'none');
+                    forms.closeToDoForm;
+                    this.checkProjectSelect;
+                    display.appendAllTodos(projectSelected);
+                });
+                break;
+            case 'discription':
+                
+                break;
+            case 'modify':
+                formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
+                    e.preventDefault();
+                    this.getToDoFormData('modify', key);
+                    forms.closeToDoForm;
+                    this.checkProjectSelect;
+                    display.appendAllTodos(projectSelected);
+                });
+                break;
+            default:
+                break;
         }
     }
-    static get getNewToDo() {
-        const formSelect = document.querySelector('.todoForm');
-        myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
+    static getToDoFormData(formstatus, key) {
+        if(formstatus == 'new') {
+            const formSelect = document.querySelector('.todoForm');
+            myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
+        }else {
+            const formSelect = document.querySelector('.todoForm');
+            myToDos[key].setProject(formSelect.querySelector('#projectChoice').value);
+            myToDos[key].setPriority(formSelect.querySelector('#priorityChoice').value); 
+            myToDos[key].setDiscription(formSelect.querySelector('textarea').value);
+            myToDos[key].setTime(formSelect.querySelector('input').value);
+        }
     }
     static get checkProjectSelect() {
         document.querySelector('#projContainer').querySelectorAll('label').forEach(label => {
