@@ -74,18 +74,22 @@ class display {
         root.style.setProperty('--secondary-text', '#DFE3EE');
         }
     }
-    static get discription() {
+    static discription(key) {
         let select = document.querySelector('#content');
         select.appendChild(document.createElement('div')).className = 'filter';
         select.appendChild(document.createElement('div')).className = 'formContainer';
-        select.lastChild.appendChild(document.createElement('form')).className = 'formDisc';
-        select = document.querySelector('.formDisc');
+        select.lastChild.appendChild(document.createElement('form')).className = 'todoForm';
+        select = document.querySelector('.todoForm');
         select.appendChild(document.createElement('button')).className = 'closebtn';
         select.querySelector('.closebtn').setAttribute('type', 'reset');
         select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
         select.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
-        select.appendChild(document.createElement('p')).textContent = 'duno';
+        select.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
         screenEvent.addFormListener('formDisc');
+        select.appendChild(document.createElement('p')).textContent = 'Date Due';
+        select.appendChild(document.createElement('p')).textContent = 'Time Due';
+        select.appendChild(document.createElement('p')).textContent = 'Completed';
+        select.appendChild(document.createElement('p')).textContent = 'Random Cat Fact';
     }
 };
 export { display };

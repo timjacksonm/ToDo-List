@@ -59,7 +59,6 @@ class forms {
         select.querySelector('#Submit').textContent = 'Submit';
         if(status == 'new') {
             screenEvent.addFormListener('new', 'none');
-        }else if(status == 'disc') {
         }else {
             screenEvent.addFormListener('modify', key);
         }

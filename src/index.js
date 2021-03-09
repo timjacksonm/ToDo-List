@@ -61,8 +61,9 @@ class screenEvent {
         });
 //When the discription of a todo is clicked. Opens window displaying more information.
         discrButton.forEach(disc => {
-            disc.addEventListener('click', ()=>{
-                display.discription;
+            disc.addEventListener('click', (e)=>{
+                let key = e.target.parentNode.querySelector('input').id;
+                display.discription(key);
             });
         });
 //When modify button is clicked. Opens window allowing changes to the current ToDo.
@@ -100,9 +101,6 @@ class screenEvent {
                     this.checkProjectSelect;
                     display.appendAllTodos(projectSelected);
                 });
-                break;
-            case 'discription':
-                
                 break;
             case 'modify':
                 formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
