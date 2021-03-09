@@ -1,7 +1,7 @@
 import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
-
+import { sort } from './sort';
 const addProject = document.getElementById('addProject');
 const addToDo =  document.getElementById('newTodo');
 const closeNav = document.getElementById('closeNav');
@@ -14,19 +14,17 @@ let myProjects = [];
 let myToDos = [];
 let projectSelected = '';
 
-const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2049-01-01T12:00');
-const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2049-01-01T12:00');
-const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', '2049-01-01T12:00');
-const todo4 = new ToDo('Default', 'Green', 'false', 'todo discription', '2049-01-01T12:00');
-const todo5 = new ToDo('Default', 'Red', 'false', 'test 1234', '2049-01-01T12:00');
-const todo6 = new ToDo('Default', 'Green', 'false', 'zander the cat', '2049-01-01T12:00');
-const todo7 = new ToDo('Default', 'Red', 'false', 'bandit the dog', '2049-01-01T12:00');
-const todo8 = new ToDo('Default', 'Orange', 'false', 'todo discription', '2049-01-01T12:00');
-const todo9 = new ToDo('Default', 'Orange', 'false', 'asldfjasldfjsfd', '2049-01-01T12:00');
+const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2021-04-1T12:00');
+const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2021-03-29T12:00');
+const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', '2021-03-24T12:00');
+const todo4 = new ToDo('Default', 'Green', 'false', 'todo discription', '2021-03-29T12:00');
+const todo5 = new ToDo('Default', 'Red', 'false', 'test 1234', '2021-03-28T12:00');
+const todo6 = new ToDo('Default', 'Green', 'false', 'zander the cat', '2021-03-13T12:00');
+const todo7 = new ToDo('Default', 'Red', 'false', 'bandit the dog', '2021-03-14T12:00');
+const todo8 = new ToDo('Default', 'Orange', 'false', 'todo discription', '2021-03-09T12:00');
+const todo9 = new ToDo('Default', 'Orange', 'false', 'asldfjasldfjsfd', '2021-03-09T12:00');
 myProjects.push('Default', todo1.project, todo2.project, todo3.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
-console.log(myToDos);
-console.log(myProjects);
 
 class screenEvent {
     static get getNewProject() {
@@ -150,6 +148,9 @@ class screenEvent {
     document.querySelector('#projContainer').firstElementChild.firstChild.checked = "checked";
     display.appendAllTodos('Default');
     screenEvent.addProjectListeners;
+    sort.todayList;
+    sort.weekList;
+    sort.monthList;
 })();
 
 export { myProjects, myToDos, screenEvent, projectSelected };
