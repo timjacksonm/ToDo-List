@@ -1,4 +1,5 @@
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
+import { format } from 'date-fns'
 class forms {
     static todoForm(status, clickevent) {
         let key = '';
@@ -51,9 +52,9 @@ class forms {
         }
         select.appendChild(document.createElement('p')).textContent = 'When should this task be completed by?';
         select.appendChild(document.createElement('input'))
-        select.querySelector('input').type = 'datetime-local';
+        select.querySelector('input').type = 'date';
         if(status == 'modify') {
-        select.querySelector('input').value = myToDos[key].time;
+            select.querySelector('input').value = format((new Date(myToDos[key].time)), 'yyyy-MM-dd');
         }
         select.appendChild(document.createElement('button')).id = 'Submit';
         select.querySelector('#Submit').textContent = 'Submit';

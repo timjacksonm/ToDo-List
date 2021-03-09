@@ -1,5 +1,6 @@
 import { forms } from './forms';
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
+import { format, formatDistanceToNowStrict } from 'date-fns'
 
 class display {
     static appendAllTodos(projectName) {
@@ -19,10 +20,16 @@ class display {
             if(myToDos[i].checked == 'true' || myToDos[i].checked == true){document.getElementById(i).checked = true;}
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
-            selectContainer.lastChild.querySelector('.labelDisc').textContent = myToDos[i].discription;
+            let discName = myToDos[i].discription;
+            //add mediaquerie info for longer character limit.
+            if(myToDos[i].discription.length > 12) {
+                discName = myToDos[i].discription.substring(0, 12) + "...";
+            }
+            selectContainer.lastChild.querySelector('.labelDisc').textContent = discName;
             selectContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'time';
-            selectContainer.lastChild.querySelector('.time').textContent = myToDos[i].time;
+            let date = new Date(myToDos[i].time);
+            selectContainer.lastChild.querySelector('.time').textContent = format(date, 'P');
             selectContainer.lastChild.querySelector('.time').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'modify';
             selectContainer.lastChild.querySelector('.modify').id = i + 'modify';
@@ -75,6 +82,7 @@ class display {
         }
     }
     static discription(key) {
+        let date = new Date(myToDos[key].time)
         let select = document.querySelector('#content');
         select.appendChild(document.createElement('div')).className = 'filter';
         select.appendChild(document.createElement('div')).className = 'formContainer';
@@ -84,12 +92,11 @@ class display {
         select.querySelector('.closebtn').setAttribute('type', 'reset');
         select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
         select.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
+        select.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(date, 'PPPP');
+        select.appendChild(document.createElement('p')).textContent = 'Be sure to complete ToDo task' + ' ' + formatDistanceToNowStrict(date, { addSuffix: true}) + '!';
+        select.appendChild(document.createElement('p')).textContent = 'ToDo discription expanded:';
         select.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
         screenEvent.addFormListener('formDisc');
-        select.appendChild(document.createElement('p')).textContent = 'Date Due';
-        select.appendChild(document.createElement('p')).textContent = 'Time Due';
-        select.appendChild(document.createElement('p')).textContent = 'Completed';
-        select.appendChild(document.createElement('p')).textContent = 'Random Cat Fact';
     }
 };
 export { display };
