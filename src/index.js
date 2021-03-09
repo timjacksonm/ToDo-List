@@ -66,8 +66,8 @@ class screenEvent {
             });
         });
 //When modify button is clicked. Opens window allowing changes to the current ToDo.
-        modifyButton.forEach(button => {button.addEventListener('click', ()=>{
-            console.log('modifybuttontest')
+        modifyButton.forEach(button => {button.addEventListener('click', (e)=>{
+            forms.todoForm('modify', e);
         })
     });
 //When delete button is clicked. updates myToDos Array - updates DOM
@@ -118,7 +118,7 @@ class screenEvent {
     openNav.addEventListener('click', ()=>{display.openNav});
     closeNav.addEventListener('click', ()=>{display.closeNav});
     addProject.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
-    addToDo.addEventListener('click', ()=>{forms.newToDoForm;});
+    addToDo.addEventListener('click', ()=>{forms.todoForm('new');});
     window.addEventListener('click', (e)=>{
         if (e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
             display.closeNav;

@@ -1,6 +1,14 @@
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 class forms {
-    static get newToDoForm() {
+    static todoForm(status, e) {
+        console.log(e);
+        let key = '';
+        if(e.target.className == 'fa fa-pencil-square-o') {
+            key = e.target.parentNode.id.charAt(0);
+         }else {
+             key = e.target.id.charAt(0);
+         }
+         console.log(key);
         let select = document.querySelector('#content');
         select.appendChild(document.createElement('div')).className = 'filter';
         select.appendChild(document.createElement('div')).className = 'formContainer';
@@ -9,7 +17,11 @@ class forms {
         select.appendChild(document.createElement('button')).className = 'closebtn';
         select.querySelector('.closebtn').setAttribute('type', 'reset');
         select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
-        select.appendChild(document.createElement('h1')).textContent = 'New ToDo';
+        if(status == 'new') {
+            select.appendChild(document.createElement('h1')).textContent = 'New ToDo';
+        }else {
+            select.appendChild(document.createElement('h1')).textContent = 'Modify ToDo';
+            }
         select.appendChild(document.createElement('p')).textContent = 'Project select'
         select.appendChild(document.createElement('select')).id = 'projectChoice';
         select = document.querySelector('#projectChoice');
@@ -28,11 +40,17 @@ class forms {
         select.options[1].value = 'Orange';
         select.appendChild(document.createElement('option')).textContent = 'High';
         select.options[2].value = 'Red';
+        if(status == 'modify') {
+            select.value = myToDos[key].priority;
+        }
         select = document.querySelector('.todoForm');
         select.appendChild(document.createElement('p')).textContent = 'Discription';
         select.appendChild(document.createElement('textarea')).setAttribute('rows', '4');
+        if(status == 'modify') {
+            select.querySelector('textarea').textContent = myToDos[key].discription;
+        }
         select.appendChild(document.createElement('p')).textContent = 'When should this task be completed by?';
-        select.appendChild(document.createElement('input')).setAttribute('placeholder', 'mm/dd/yyyy, -:-- --')
+        select.appendChild(document.createElement('input'))
         select.querySelector('input').type = 'datetime-local';
         select.appendChild(document.createElement('button')).id = 'Submit';
         select.querySelector('#Submit').textContent = 'Submit';
