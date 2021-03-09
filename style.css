@@ -173,8 +173,7 @@ input:checked + .slider:before {
   align-self: center;
   color: var(--primary-text);
 }
-/* The container */
-.projectListing {
+.projectListing, .sortChoice {
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -184,7 +183,7 @@ input:checked + .slider:before {
   -ms-user-select: none;
   user-select: none;
 }
-.projectListing input {
+.projectListing input, .sortChoice input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -193,11 +192,11 @@ input:checked + .slider:before {
   width: 100%;
   text-align: center;
 }
-.projectListing:hover input ~ .projSelect {
+.projectListing:hover input ~ .projSelect, .sortChoice:hover input ~ .sortSelect {
   background-color: var(--hover-color);
   border: 1px solid var(--secondary-text);
 }
-.projectListing input:checked ~ .projSelect {
+.projectListing input:checked ~ .projSelect, .sortChoice input:checked ~ .sortSelect {
   background-color: var(--background-one);
   color: var(--background-two);
   border: 1px solid var(--background-two);
