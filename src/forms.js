@@ -1,14 +1,14 @@
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 class forms {
     static todoForm(status, e) {
-        console.log(e);
         let key = '';
-        if(e.target.className == 'fa fa-pencil-square-o') {
-            key = e.target.parentNode.id.charAt(0);
-         }else {
-             key = e.target.id.charAt(0);
-         }
-         console.log(key);
+        if(status == 'modify') {
+            if(e.target.className == 'fa fa-pencil-square-o') {
+                key = e.target.parentNode.id.charAt(0);
+             }else {
+                 key = e.target.id.charAt(0);
+             }
+        }
         let select = document.querySelector('#content');
         select.appendChild(document.createElement('div')).className = 'filter';
         select.appendChild(document.createElement('div')).className = 'formContainer';
@@ -52,6 +52,9 @@ class forms {
         select.appendChild(document.createElement('p')).textContent = 'When should this task be completed by?';
         select.appendChild(document.createElement('input'))
         select.querySelector('input').type = 'datetime-local';
+        if(status == 'modify') {
+        select.querySelector('input').value = myToDos[key].time;
+        }
         select.appendChild(document.createElement('button')).id = 'Submit';
         select.querySelector('#Submit').textContent = 'Submit';
 
