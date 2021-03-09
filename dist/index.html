@@ -22,10 +22,24 @@
           <button id="closeNav" class="closebtn" type="reset">
             <i class="fa fa-times" aria-hidden="true"></i>
           </button>
-            <a href="#">All</a>
-            <a href="#">Today</a>
-            <a href="#">Week</a>
-            <a href="#">Month</a>
+          <div id="sortContainer" class="sortContainer">
+              <label class="sortChoice">
+                  <input name="sort" type="radio">
+                  <span class="sortSelect">All</span>
+              </label>
+              <label class="sortChoice">
+                <input name="sort" type="radio">
+                <span class="sortSelect">Today</span>
+            </label>
+            <label class="sortChoice">
+                <input name="sort" type="radio">
+                <span class="sortSelect">Week</span>
+            </label>
+            <label class="sortChoice">
+                <input name="sort" type="radio">
+                <span class="sortSelect">Month</span>
+            </label>
+        </div>
             <div class="dropdown"> Project Select
               <i class="fa fa-caret-down"></i>
               <button id="addProject" class="fa fa-plus addProject myInput"></button>

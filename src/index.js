@@ -14,7 +14,7 @@ let myProjects = [];
 let myToDos = [];
 let projectSelected = '';
 
-const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2021-04-1T12:00');
+const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2021-04-01T12:00');
 const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2021-03-29T12:00');
 const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', '2021-03-24T12:00');
 const todo4 = new ToDo('Default', 'Green', 'false', 'todo discription', '2021-03-29T12:00');
