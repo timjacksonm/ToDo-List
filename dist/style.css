@@ -173,6 +173,13 @@ input:checked + .slider:before {
   align-self: center;
   color: var(--primary-text);
 }
+.projDelete {
+  float: right;
+  border: none;
+  background: none;
+  font-size: inherit;
+  color: var(--primary-text);
+}
 .projectListing, .sortChoice {
   display: flex;
   flex-direction: column;
@@ -194,6 +201,8 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 .projSelect {
+  display: block;
+  justify-content: center;
   text-align: center;
 }
 .projectListing:hover input ~ .projSelect, .sortChoice:hover input ~ .sortSelect {
@@ -384,6 +393,7 @@ option {
 .labelDisc:hover,
 .modify:hover,
 .delete:hover,
+.projDelete:hover,
 .addTask:hover {
   color: var(--background-two);
 }

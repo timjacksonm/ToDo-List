@@ -68,6 +68,9 @@ class display {
             selectNavContainer.lastChild.querySelector('input').type = 'radio';
             selectNavContainer.lastChild.appendChild(document.createElement('span')).className = 'projSelect';
             selectNavContainer.lastChild.querySelector('.projSelect').textContent = myProjects[i];
+            selectNavContainer.lastChild.querySelector('.projSelect').appendChild(document.createElement('button')).className = 'projDelete';
+            selectNavContainer.lastChild.querySelector('.projDelete').id = i + 'delete';
+            selectNavContainer.lastChild.querySelector('.projDelete').appendChild(document.createElement('i')).className = 'fa fa-trash';
         }
     }
     static get openNav() {

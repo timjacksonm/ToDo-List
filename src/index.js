@@ -48,7 +48,47 @@ class screenEvent {
                     display.appendAllTodos(myProjects[i], sortSelected);
                 }
             });
-        } 
+        }
+        const deleteButton = document.querySelectorAll('.projDelete');
+        //When delete button is clicked. updates myToDos Array - updates myProjects Array - updates DOM
+                deleteButton.forEach(button => {
+                    button.addEventListener('click', (e)=>{
+                        let key = '';
+                        if(e.target.className == 'fa fa-trash') {
+                           key = e.target.parentNode.id.charAt(0);
+                           function confirmWindow() {
+                               const choice = confirm('Delete' + ' ' + `"${myProjects[key]}"?` + ' ' + 'Confirm will delete this project and all todo/s assigned to it.');
+                               if(choice == true) {
+                                   const projectName = myProjects[key];
+                                   let afterRemove = [];
+                                   for (let i = 0; i < myToDos.length; i++) {
+                                       if(myToDos[i].project !== projectName) {
+                                            afterRemove.push(myToDos[i]);
+                                       }
+                                   }
+                                   myToDos = afterRemove;
+                                   myProjects.splice(key, 1);
+                                   display.appendAllProjects;
+                                   screenEvent.addProjectListeners;
+                                   document.querySelector('#projContainer').querySelector('input').checked = 'checked';
+                                    screenEvent.checkProjectSelect;
+                                    screenEvent.checkSortSelect;
+                                    display.appendAllTodos(projectSelected, sortSelected);
+                                    console.table(myProjects);
+                                    console.table(myToDos);
+                               }
+                           }
+                           confirmWindow();
+                           
+                        }else {
+                            key = e.target.id.charAt(0);
+                            myToDos.splice(key, 1);
+                            this.checkProjectSelect;
+                            this.checkSortSelect;
+                            display.appendAllTodos(projectSelected, sortSelected);
+                        }
+                })
+            });
     }
     static get addSortListeners() {
         for (let i = 0; i < sortContainer.children.length; i++) {
@@ -172,8 +212,8 @@ class screenEvent {
         }
     });
     display.appendAllProjects;
-    document.querySelector('#projContainer').firstElementChild.firstElementChild.checked = "checked";
-    document.querySelector('#sortContainer').firstElementChild.firstElementChild.checked = "checked";
+    document.querySelector('#projContainer').querySelector('input').checked = 'checked';
+    document.querySelector('#sortContainer').querySelector('input').checked = 'checked';
     screenEvent.addProjectListeners;
     screenEvent.addSortListeners;
     screenEvent.checkProjectSelect;
