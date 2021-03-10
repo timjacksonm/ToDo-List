@@ -1,5 +1,5 @@
 import { forms } from './forms';
-import { screenEvent, myProjects, myToDos, projectSelected } from './index';
+import { screenEvent, myProjects, myToDos, projectSelected, screenWidth } from './index';
 import { format, formatDistanceToNowStrict } from 'date-fns'
 import { sort } from './sort';
 
@@ -38,9 +38,23 @@ class display {
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
             let discName = myToDosSorted[i].discription;
-            //add mediaquerie info for longer character limit.
-            if(myToDosSorted[i].discription.length > 12) {
-                discName = myToDosSorted[i].discription.substring(0, 12) + "...";
+            //mediaquerie info for longer character limit on discription.
+            if(screenWidth == 280){
+                if(myToDosSorted[i].discription.length > 10) {
+                    discName = myToDosSorted[i].discription.substring(0, 10) + "...";
+                }
+            }else if(screenWidth > 280 && screenWidth <= 375) {
+                if(myToDosSorted[i].discription.length > 16) {
+                    discName = myToDosSorted[i].discription.substring(0, 16) + "...";
+                }
+            }else if(screenWidth > 375 && screenWidth <= 812) {
+                if(myToDosSorted[i].discription.length > 25) {
+                    discName = myToDosSorted[i].discription.substring(0, 25) + "...";
+                }
+            }else {
+                if(myToDosSorted[i].discription.length > 50) {
+                    discName = myToDosSorted[i].discription.substring(0, 50) + "...";
+                }
             }
             selectContainer.lastChild.querySelector('.labelDisc').textContent = discName;
             selectContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');

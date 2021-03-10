@@ -15,12 +15,13 @@ let myProjects = [];
 let myToDos = [];
 let projectSelected = '';
 let sortSelected = '';
+let screenWidth = '';
 
 
 const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2021-04-01T12:00');
 const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2021-03-29T12:00');
 const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', '2021-03-24T12:00');
-const todo4 = new ToDo('Default', 'Green', 'false', 'todo discription', '2021-03-29T12:00');
+const todo4 = new ToDo('Default', 'Green', 'false', '123456789123456789123456789123456789123456789123456789123456789123456789123456789', '2021-03-29T12:00');
 const todo5 = new ToDo('Default', 'Red', 'false', 'test 1234', '2021-03-28T12:00');
 const todo6 = new ToDo('Default', 'Green', 'false', 'zander the cat', '2021-03-13T12:00');
 const todo7 = new ToDo('Default', 'Red', 'false', 'bandit the dog', '2021-03-14T12:00');
@@ -201,6 +202,7 @@ class screenEvent {
     }
 }
 (function winLoad(){
+    screenWidth = window.screen.availWidth;
     sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
     openNav.addEventListener('click', ()=>{display.openNav});
     closeNav.addEventListener('click', ()=>{display.closeNav});
@@ -211,6 +213,10 @@ class screenEvent {
             display.closeNav;
         }
     });
+    window.addEventListener('orientationchange', (e)=> {
+        screenWidth = e.target.screen.availWidth;
+        display.appendAllTodos('Default', sortSelected);
+    })
     display.appendAllProjects;
     document.querySelector('#projContainer').querySelector('input').checked = 'checked';
     document.querySelector('#sortContainer').querySelector('input').checked = 'checked';
@@ -220,4 +226,4 @@ class screenEvent {
     screenEvent.checkSortSelect;
     display.appendAllTodos('Default', sortSelected);
 })();
-export { myProjects, myToDos, screenEvent, projectSelected, sortSelected };
+export { myProjects, myToDos, screenEvent, projectSelected, sortSelected, screenWidth };

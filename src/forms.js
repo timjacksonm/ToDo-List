@@ -80,5 +80,8 @@ class forms {
     static get removeProjectForm() {
         document.querySelector('#projContainer').lastChild.innerHTML = '';
     }
+    static get formValidation() {
+        
+    }
 }
 export { forms };
