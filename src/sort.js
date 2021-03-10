@@ -1,33 +1,33 @@
 import { myProjects, myToDos } from './index';
 import { format, isToday, isThisWeek, isThisMonth, parseISO } from 'date-fns'
+
 class sort {
     static get todayList() {
-        let listArray = [];
+        let myToDosSorted = [];
         for (let i = 0; i < myToDos.length; i++) {
             if(isToday(parseISO(myToDos[i].time))) {
-                listArray.push(myToDos[i]);
+                myToDosSorted.push(myToDos[i]);
             }  
         }
-        console.log(listArray);
+        return myToDosSorted;
     }
     static get weekList() {
-        let listArray = [];
+        let myToDosSorted = [];
         for (let i = 0; i < myToDos.length; i++) {
             if(isThisWeek(parseISO(myToDos[i].time))) {
-                listArray.push(myToDos[i]);
+                myToDosSorted.push(myToDos[i]);
             }  
         }
-        console.log(listArray, 'week');
-        
+        return myToDosSorted;
     }
     static get monthList() {
-        let listArray = [];
+        let myToDosSorted = [];
         for (let i = 0; i < myToDos.length; i++) {
             if(isThisMonth(parseISO(myToDos[i].time))) {
-                listArray.push(myToDos[i]);
+                myToDosSorted.push(myToDos[i]);
             }  
         }
-        console.log(listArray, 'month');
+        return myToDosSorted;
     }
 }
 export { sort };

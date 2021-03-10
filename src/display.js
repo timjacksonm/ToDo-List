@@ -1,34 +1,51 @@
 import { forms } from './forms';
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 import { format, formatDistanceToNowStrict } from 'date-fns'
+import { sort } from './sort';
 
 class display {
-    static appendAllTodos(projectName) {
+    static appendAllTodos(projectName, sortSelected) {
         const selectContainer = document.querySelector('#todoContainer');
         selectContainer.innerHTML = '';
-       
-        for (let i = 0; i < myToDos.length; i++) {
-            if (myToDos[i].project == projectName) {
+        let myToDosSorted = [];
+       switch (sortSelected) {
+           case 'All':
+               myToDosSorted = myToDos;
+               break;
+            case 'Today':
+                myToDosSorted = sort.todayList;
+                break;
+            case 'Week':
+                myToDosSorted = sort.weekList;
+                break;
+            case 'Month':
+                myToDosSorted = sort.monthList;
+                break;
+           default:
+               break;
+       }
+        for (let i = 0; i < myToDosSorted.length; i++) {
+            if (myToDosSorted[i].project == projectName) {
             selectContainer.appendChild(document.createElement('li')).className = 'listItem';
             selectContainer.lastChild.id = 'task' + i;
             selectContainer.lastChild.appendChild(document.createElement('label')).className = 'checkLabel';
             selectContainer.lastChild.querySelector('.checkLabel').setAttribute('for', `${i}`);
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'priority';
-            selectContainer.lastChild.querySelector('.priority').style.backgroundColor = myToDos[i].priority;
+            selectContainer.lastChild.querySelector('.priority').style.backgroundColor = myToDosSorted[i].priority;
             selectContainer.lastChild.firstChild.appendChild(document.createElement('input')).id = i;
             document.getElementById(i).setAttribute('type', 'checkbox');
-            if(myToDos[i].checked == 'true' || myToDos[i].checked == true){document.getElementById(i).checked = true;}
+            if(myToDosSorted[i].checked == 'true' || myToDosSorted[i].checked == true){document.getElementById(i).checked = true;}
             selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
-            let discName = myToDos[i].discription;
+            let discName = myToDosSorted[i].discription;
             //add mediaquerie info for longer character limit.
-            if(myToDos[i].discription.length > 12) {
-                discName = myToDos[i].discription.substring(0, 12) + "...";
+            if(myToDosSorted[i].discription.length > 12) {
+                discName = myToDosSorted[i].discription.substring(0, 12) + "...";
             }
             selectContainer.lastChild.querySelector('.labelDisc').textContent = discName;
             selectContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'time';
-            let date = new Date(myToDos[i].time);
+            let date = new Date(myToDosSorted[i].time);
             selectContainer.lastChild.querySelector('.time').textContent = format(date, 'P');
             selectContainer.lastChild.querySelector('.time').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'modify';
