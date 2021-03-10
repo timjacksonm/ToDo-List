@@ -1,7 +1,6 @@
 import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
-import { sort } from './sort';
 const addProject = document.getElementById('addProject');
 const addToDo =  document.getElementById('newTodo');
 const closeNav = document.getElementById('closeNav');
@@ -18,7 +17,7 @@ let sortSelected = '';
 let screenWidth = '';
 
 
-const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2021-04-01T12:00');
+const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', `'2021-04-01T12:00'`);
 const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2021-03-29T12:00');
 const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', '2021-03-24T12:00');
 const todo4 = new ToDo('Default', 'Green', 'false', '123456789123456789123456789123456789123456789123456789123456789123456789123456789', '2021-03-29T12:00');
@@ -153,21 +152,25 @@ class screenEvent {
             case 'new':
                 formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
                     e.preventDefault();
-                    this.getToDoFormData('new', 'none');
-                    forms.closeToDoForm;
-                    this.checkProjectSelect;
-                    this.checkSortSelect;
-                    display.appendAllTodos(projectSelected, sortSelected);
+                    let completed = this.getToDoFormData('new', 'none');
+                    if(completed == true) {
+                        forms.closeToDoForm;
+                        this.checkProjectSelect;
+                        this.checkSortSelect;
+                        display.appendAllTodos(projectSelected, sortSelected);
+                    }
                 });
                 break;
             case 'modify':
                 formSelect.querySelector('#Submit').addEventListener('click', (e)=>{
                     e.preventDefault();
-                    this.getToDoFormData('modify', key);
-                    forms.closeToDoForm;
-                    this.checkProjectSelect;
-                    this.checkSortSelect;
-                    display.appendAllTodos(projectSelected, sortSelected);
+                    let completed = this.getToDoFormData('modify', key);
+                    if(completed == true) {
+                        forms.closeToDoForm;
+                        this.checkProjectSelect;
+                        this.checkSortSelect;
+                        display.appendAllTodos(projectSelected, sortSelected);
+                    }
                 });
                 break;
             default:
@@ -175,15 +178,27 @@ class screenEvent {
         }
     }
     static getToDoFormData(formstatus, key) {
+        let completed = forms.validation('new');      
         if(formstatus == 'new') {
-            const formSelect = document.querySelector('.todoForm');
-            myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
+            if(completed == true) {
+                const formSelect = document.querySelector('.todoForm');
+                myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
+                console.log(myToDos);
+                return true;
+            }else {
+                return false;
+            }
         }else {
-            const formSelect = document.querySelector('.todoForm');
-            myToDos[key].setProject(formSelect.querySelector('#projectChoice').value);
-            myToDos[key].setPriority(formSelect.querySelector('#priorityChoice').value); 
-            myToDos[key].setDiscription(formSelect.querySelector('textarea').value);
-            myToDos[key].setTime(formSelect.querySelector('input').value);
+            if(completed == true) {
+                const formSelect = document.querySelector('.todoForm');
+                myToDos[key].setProject(formSelect.querySelector('#projectChoice').value);
+                myToDos[key].setPriority(formSelect.querySelector('#priorityChoice').value); 
+                myToDos[key].setDiscription(formSelect.querySelector('textarea').value);
+                myToDos[key].setTime(formSelect.querySelector('input').value);
+                return true;
+            }else {
+                return false;
+            }
         }
     }
     static get checkProjectSelect() {

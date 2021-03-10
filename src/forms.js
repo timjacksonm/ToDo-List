@@ -80,8 +80,19 @@ class forms {
     static get removeProjectForm() {
         document.querySelector('#projContainer').lastChild.innerHTML = '';
     }
-    static get formValidation() {
-        
+    static validation(formType) {
+        const selectForm = document.querySelector('.todoForm');
+        if(formType == 'new') {
+            if (selectForm[4].value == '' || selectForm[3].value == '') {
+                selectForm[4].style.border = '1px solid red';
+                selectForm[3].style.border = '1px solid red';
+                return false;
+            }else {
+                return true;
+            }
+        }else {
+
+        }
     }
 }
 export { forms };

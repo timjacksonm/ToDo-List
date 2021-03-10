@@ -264,12 +264,13 @@ main {
   padding: 8px 0;
 }
 .discr {
-  padding: 8px;
-  border: 1px solid var(--background-two);
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
   border-radius: 15px;
   flex: 1;
   word-wrap: break-word;
   overflow: auto;
+  min-height: 100px;
 }
 .todoForm p, .discform p {
   margin: 10px 0 2px;

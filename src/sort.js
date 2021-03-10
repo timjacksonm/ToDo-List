@@ -1,4 +1,4 @@
-import { myProjects, myToDos } from './index';
+import { myToDos } from './index';
 import { format, isToday, isThisWeek, isThisMonth, parseISO } from 'date-fns'
 
 class sort {
