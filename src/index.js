@@ -8,11 +8,14 @@ const closeNav = document.getElementById('closeNav');
 const openNav = document.getElementById('openNav');
 const sliderToggle = document.getElementById('sliderToggle');
 const projectContainer = document.querySelector('#projContainer');
+const sortContainer = document.querySelector('#sortContainer');
 const todoContainer = document.querySelector('#todoContainer');
 
 let myProjects = [];
 let myToDos = [];
 let projectSelected = '';
+let sortSelected = '';
+
 
 const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', '2021-04-01T12:00');
 const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2021-03-29T12:00');
@@ -39,9 +42,22 @@ class screenEvent {
     }
     static get addProjectListeners() {
         for (let i = 0; i < myProjects.length; i++) {
-            projectContainer.children[i].addEventListener('click', ()=>{
-            todoContainer.innerHTML = '';
-            display.appendAllTodos(myProjects[i])
+            projectContainer.children[i].addEventListener('click', (e)=>{
+                if(e.target.tagName == 'INPUT') {
+                    display.appendAllTodos(myProjects[i]);
+                }
+            });
+        } 
+    }
+    static get addSortListeners() {
+        for (let i = 0; i < sortContainer.children.length; i++) {
+            sortContainer.children[i].addEventListener('click', (e)=>{
+                if(e.target.tagName == 'INPUT') {
+                    this.checkProjectSelect;
+                    this.checkSortSelect;
+                    console.log(sortSelected);
+                }
+                // display.appendAllTodos(projectSelected);
             });
         } 
     }
@@ -128,9 +144,16 @@ class screenEvent {
     static get checkProjectSelect() {
         document.querySelector('#projContainer').querySelectorAll('label').forEach(label => {
              if (label.querySelector('input').checked == true) {
-                 return projectSelected = label.lastChild.textContent
+                 return projectSelected = label.lastElementChild.textContent
                 }
             })
+    }
+    static get checkSortSelect() {
+        document.querySelector('#sortContainer').querySelectorAll('label').forEach(label => {
+            if (label.querySelector('input').checked == true) {
+                return sortSelected = label.lastElementChild.textContent
+            }
+        })
     }
 }
 (function winLoad(){
@@ -145,12 +168,15 @@ class screenEvent {
         }
     });
     display.appendAllProjects;
-    document.querySelector('#projContainer').firstElementChild.firstChild.checked = "checked";
+    document.querySelector('#projContainer').firstElementChild.firstElementChild.checked = "checked";
+    document.querySelector('#sortContainer').firstElementChild.firstElementChild.checked = "checked";
     display.appendAllTodos('Default');
     screenEvent.addProjectListeners;
+    screenEvent.addSortListeners;
     sort.todayList;
     sort.weekList;
     sort.monthList;
+    screenEvent.checkProjectSelect;
+    screenEvent.checkSortSelect;
 })();
-
-export { myProjects, myToDos, screenEvent, projectSelected };
+export { myProjects, myToDos, screenEvent, projectSelected, sortSelected };
