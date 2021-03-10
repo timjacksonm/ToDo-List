@@ -106,16 +106,17 @@ class display {
         let select = document.querySelector('#content');
         select.appendChild(document.createElement('div')).className = 'filter';
         select.appendChild(document.createElement('div')).className = 'formContainer';
-        select.lastChild.appendChild(document.createElement('form')).className = 'todoForm';
-        select = document.querySelector('.todoForm');
+        select.lastChild.appendChild(document.createElement('form')).className = 'discForm';
+        select = document.querySelector('.discForm');
         select.appendChild(document.createElement('button')).className = 'closebtn';
         select.querySelector('.closebtn').setAttribute('type', 'reset');
         select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
         select.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
         select.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(date, 'PPPP');
-        select.appendChild(document.createElement('p')).textContent = 'Be sure to complete ToDo task' + ' ' + formatDistanceToNowStrict(date, { addSuffix: true}) + '!';
-        select.appendChild(document.createElement('p')).textContent = 'ToDo discription expanded:';
+        select.appendChild(document.createElement('p')).textContent = 'Be sure to complete ToDo task:' + ' ' + formatDistanceToNowStrict(date, { addSuffix: true}) + '!';
+        select.appendChild(document.createElement('h3')).textContent = 'Discription expanded:';
         select.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
+        select.lastChild.className = 'discr';
         screenEvent.addFormListener('formDisc');
     }
 };

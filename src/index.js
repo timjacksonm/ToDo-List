@@ -146,7 +146,7 @@ class screenEvent {
     });
     }
     static addFormListener(status, key) {
-        const formSelect = document.querySelector('.todoForm');
+        const formSelect = document.querySelector('.formContainer').firstChild;
         formSelect.querySelector('.closebtn').addEventListener('click', ()=>{forms.closeToDoForm});
         switch (status) {
             case 'new':
