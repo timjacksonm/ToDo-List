@@ -1,6 +1,7 @@
 import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
+import { format, addDays, isThisWeek, parseISO } from 'date-fns';
 const addProject = document.getElementById('addProject');
 const addToDo =  document.getElementById('newTodo');
 const closeNav = document.getElementById('closeNav');
@@ -16,17 +17,16 @@ let projectSelected = '';
 let sortSelected = '';
 let screenWidth = '';
 
-
-const todo1 = new ToDo('Chores','Red', 'true', 'Cook Dinner', `'2021-04-01T12:00'`);
-const todo2 = new ToDo('School','Orange', 'false', 'Feed Dog', '2021-03-29T12:00');
-const todo3 = new ToDo('Work','Green', 'false', 'Shovel Snow', '2021-03-24T12:00');
-const todo4 = new ToDo('Default', 'Green', 'false', '123456789123456789123456789123456789123456789123456789123456789123456789123456789', '2021-03-29T12:00');
-const todo5 = new ToDo('Default', 'Red', 'false', 'test 1234', '2021-03-28T12:00');
-const todo6 = new ToDo('Default', 'Green', 'false', 'zander the cat', '2021-03-13T12:00');
-const todo7 = new ToDo('Default', 'Red', 'false', 'bandit the dog', '2021-03-14T12:00');
-const todo8 = new ToDo('Default', 'Orange', 'false', 'todo discription', '2021-03-09T12:00');
-const todo9 = new ToDo('Default', 'Orange', 'false', 'asldfjasldfjsfd', '2021-03-09T12:00');
-myProjects.push('Default', todo1.project, todo2.project, todo3.project);
+const todo9 = new ToDo('Test1', 'Green', 'false', 'Create a new project in the nav menu! Be careful not to delete a project that has task you want to keep!', `${format(new Date(), 'yyyy-MM-dd')}`);
+const todo8 = new ToDo('Test1', 'Green', 'false', 'Delete Me!', `${format(addDays(new Date(), 8), 'yyyy-MM-dd')}`);
+const todo7 = new ToDo('Test1', 'Red', 'false', 'Modify Me!', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
+const todo6 = new ToDo('Test1', 'Orange', 'false', 'This task test that (checked) works as intended and is saved if you switch to a different project.', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
+const todo5 = new ToDo('Test1', 'Green', 'false', 'This task test the character limit for this discription title. Once you click the discription title a new info window will appear. You can read this full discription inside that window!', `${format(new Date(), 'yyyy-MM-dd')}`);
+const todo4 = new ToDo('Test1', 'Green', 'false', 'Go ahead Add a new Task to this project by clicking the + button above!', `${format(new Date(), 'yyyy-MM-dd')}`);
+const todo3 = new ToDo('Default', 'Red', 'false', 'This task is displayed for All, Month. Unless you are veiwing this page within the last 8 days of the current month.', `${format(addDays(new Date(), 8), 'yyyy-MM-dd')}`);
+const todo2 = new ToDo('Default', 'Orange', 'false', 'This task is displayed for this Week / Month.', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
+const todo1 = new ToDo('Default', 'Green', 'false', 'This task is displayed for any sort selection.', `${format(new Date(), 'yyyy-MM-dd')}`);
+myProjects.push(todo1.project, todo4.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 
 class screenEvent {
