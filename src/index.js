@@ -2,8 +2,8 @@ import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
 import { format, addDays } from 'date-fns';
-const addProject = document.getElementById('addProject');
-const addToDo =  document.getElementById('newTodo');
+const addProjectButton = document.getElementById('addProject');
+const addToDoButton =  document.getElementById('newTodo');
 const closeNav = document.getElementById('closeNav');
 const openNav = document.getElementById('openNav');
 const sliderToggle = document.getElementById('sliderToggle');
@@ -30,7 +30,17 @@ myProjects.push(todo1.project, todo4.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 
 class screenEvent {
-    static get getNewProject() {
+    static get addProjectListeners() {
+        //evetnListeners for each named project - when clicked appends to page based on sort selection.
+        for (let i = 0; i < myProjects.length; i++) {
+            projectContainer.children[i].addEventListener('click', (e)=>{
+                if(e.target.tagName == 'INPUT') {
+                    this.checkNavSelections;
+                    display.appendAllTodos(myProjects[i], sortSelected);
+                }
+            });
+        }
+        //eventListener for submitting new project
         projectContainer.addEventListener('submit', (e)=>{
             e.preventDefault();
             if(e.target.firstChild.value !== '') {
@@ -43,16 +53,7 @@ class screenEvent {
                 document.querySelector("#newProjForm > input[type=text]").style.outlineColor = 'red';
             }
         });
-    }
-    static get addProjectListeners() {
-        for (let i = 0; i < myProjects.length; i++) {
-            projectContainer.children[i].addEventListener('click', (e)=>{
-                if(e.target.tagName == 'INPUT') {
-                    this.checkSortSelect;
-                    display.appendAllTodos(myProjects[i], sortSelected);
-                }
-            });
-        }
+        //eventListener for deleting a project.
         const deleteButton = document.querySelectorAll('.projDelete');
         //When delete button is clicked. updates myToDos Array - updates myProjects Array - updates DOM
                 deleteButton.forEach(button => {
@@ -75,8 +76,7 @@ class screenEvent {
                                    display.appendAllProjects;
                                    screenEvent.addProjectListeners;
                                    document.querySelector('#projContainer').querySelector('input').checked = 'checked';
-                                    screenEvent.checkProjectSelect;
-                                    screenEvent.checkSortSelect;
+                                    screenEvent.checkNavSelections;
                                     display.appendAllTodos(projectSelected, sortSelected);
                                }
                            }
@@ -85,8 +85,7 @@ class screenEvent {
                         }else {
                             key = e.target.id.charAt(0);
                             myToDos.splice(key, 1);
-                            this.checkProjectSelect;
-                            this.checkSortSelect;
+                            this.checkNavSelections
                             display.appendAllTodos(projectSelected, sortSelected);
                         }
                 })
@@ -96,8 +95,7 @@ class screenEvent {
         for (let i = 0; i < sortContainer.children.length; i++) {
             sortContainer.children[i].addEventListener('click', (e)=>{
                 if(e.target.tagName == 'INPUT') {
-                    this.checkProjectSelect;
-                    this.checkSortSelect;
+                    this.checkNavSelections;
                     display.appendAllTodos(projectSelected, sortSelected);
                 }
             });
@@ -134,14 +132,12 @@ class screenEvent {
                 if(e.target.className == 'fa fa-trash') {
                    key = e.target.parentNode.id.charAt(0);
                    myToDos.splice(key, 1);
-                   this.checkProjectSelect;
-                   this.checkSortSelect;
+                   this.checkNavSelections;
                    display.appendAllTodos(projectSelected, sortSelected);
                 }else {
                     key = e.target.id.charAt(0);
                     myToDos.splice(key, 1);
-                    this.checkProjectSelect;
-                    this.checkSortSelect;
+                    this.checkNavSelections
                     display.appendAllTodos(projectSelected, sortSelected);
                 }
         })
@@ -157,8 +153,7 @@ class screenEvent {
                     let completed = this.getToDoFormData('new', 'none');
                     if(completed == true) {
                         forms.closeToDoForm;
-                        this.checkProjectSelect;
-                        this.checkSortSelect;
+                        this.checkNavSelections;
                         display.appendAllTodos(projectSelected, sortSelected);
                     }
                 });
@@ -169,8 +164,7 @@ class screenEvent {
                     let completed = this.getToDoFormData('modify', key);
                     if(completed == true) {
                         forms.closeToDoForm;
-                        this.checkProjectSelect;
-                        this.checkSortSelect;
+                        this.checkNavSelections;
                         display.appendAllTodos(projectSelected, sortSelected);
                     }
                 });
@@ -202,14 +196,12 @@ class screenEvent {
             }
         }
     }
-    static get checkProjectSelect() {
+    static get checkNavSelections() {
         document.querySelector('#projContainer').querySelectorAll('label').forEach(label => {
              if (label.querySelector('input').checked == true) {
                  return projectSelected = label.lastElementChild.textContent
                 }
             })
-    }
-    static get checkSortSelect() {
         document.querySelector('#sortContainer').querySelectorAll('label').forEach(label => {
             if (label.querySelector('input').checked == true) {
                 return sortSelected = label.lastElementChild.textContent
@@ -222,25 +214,27 @@ class screenEvent {
     sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
     openNav.addEventListener('click', ()=>{display.openNav});
     closeNav.addEventListener('click', ()=>{display.closeNav});
-    addProject.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
-    addToDo.addEventListener('click', ()=>{forms.todoForm('new');});
+    addProjectButton.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
+    addToDoButton.addEventListener('click', ()=>{forms.todoForm('new');});
+    //first window Listener auto closes nav if clicked outside of nav window.
     window.addEventListener('click', (e)=>{
         if (e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
             display.closeNav;
         }
     });
+    //mobile orientation change - updates discription title character length.
     window.addEventListener('orientationchange', (e)=> {
         screenWidth = e.target.screen.availWidth;
-        display.appendAllTodos('Default', sortSelected);
-    })
-    screenEvent.getNewProject;
+        screenEvent.checkNavSelections;
+        display.appendAllTodos(projectSelected, sortSelected);
+    });
     display.appendAllProjects;
+    //selects first sort seleciton 'all' & first named project 'default'
     projectContainer.querySelector('input').checked = 'checked';
     sortContainer.querySelector('input').checked = 'checked';
     screenEvent.addProjectListeners;
     screenEvent.addSortListeners;
-    screenEvent.checkProjectSelect;
-    screenEvent.checkSortSelect;
+    screenEvent.checkNavSelections;
     display.appendAllTodos(projectSelected, sortSelected);
 })();
 
