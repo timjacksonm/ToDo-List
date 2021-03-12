@@ -1,12 +1,9 @@
 import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
-import { myProjects, myToDos } from './index';
+import { myProjects, myToDos, projectContainer, todoContainer, sortContainer } from './index';
 let projectSelected = '';
 let sortSelected = '';
-const projectContainer = document.querySelector('#projContainer');
-const sortContainer = document.querySelector('#sortContainer');
-const todoContainer = document.querySelector('#todoContainer');
 
 class screenEvent {
     static get addProjectListeners() {
@@ -33,9 +30,9 @@ class screenEvent {
             }
         });
         //eventListener for deleting a project.
-        const deleteButton = document.querySelectorAll('.projDelete');
         //When delete button is clicked. updates myToDos Array - updates myProjects Array - updates DOM
-        deleteButton.forEach(button => {
+        const deleteProjectButton = document.querySelectorAll('.projDelete');
+        deleteProjectButton.forEach(button => {
             button.addEventListener('click', (e)=>{
                 if(e.target.className == 'fa fa-trash') {
                     let projIndex = e.target.parentNode.id.charAt(0);
@@ -75,7 +72,7 @@ class screenEvent {
         const checkBoxs = todoContainer.querySelectorAll('input');
         const discrButton = todoContainer.querySelectorAll('.labelDisc');
         const modifyButton = document.querySelectorAll('.modify');
-        const deleteButton = document.querySelectorAll('.delete');
+        const deleteTodoButton = document.querySelectorAll('.delete');
 //When checkBox is checked - updates myToDos Array - updates DOM
         checkBoxs.forEach(input => {
             input.addEventListener('change', (e)=>{
@@ -87,16 +84,17 @@ class screenEvent {
         discrButton.forEach(disc => {
             disc.addEventListener('click', (e)=>{
                 let key = e.target.parentNode.querySelector('input').id;
-                display.discription(key);
+                display.infoScreen(key);
             });
         });
 //When modify button is clicked. Opens window allowing changes to the current ToDo.
         modifyButton.forEach(button => {button.addEventListener('click', (e)=>{
+            console.log(e.target);
             forms.todoForm('modify', e);
         })
     });
 //When delete button is clicked. updates myToDos Array - updates DOM
-        deleteButton.forEach(button => {
+        deleteTodoButton.forEach(button => {
             button.addEventListener('click', (e)=>{
                 let key = '';
                 if(e.target.className == 'fa fa-trash') {
@@ -142,10 +140,10 @@ class screenEvent {
         }
     }
     static getToDoFormData(formstatus, key) {
+        const formSelect = document.querySelector('.todoForm');
         let completed = forms.validation('new');      
         if(formstatus == 'new') {
             if(completed == true) {
-                const formSelect = document.querySelector('.todoForm');
                 myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
                 return true;
             }else {
@@ -153,7 +151,6 @@ class screenEvent {
             }
         }else {
             if(completed == true) {
-                const formSelect = document.querySelector('.todoForm');
                 myToDos[key].setProject(formSelect.querySelector('#projectChoice').value);
                 myToDos[key].setPriority(formSelect.querySelector('#priorityChoice').value); 
                 myToDos[key].setDiscription(formSelect.querySelector('textarea').value);

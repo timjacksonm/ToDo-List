@@ -1,7 +1,6 @@
-import { myProjects, myToDos } from './index';
+import { myProjects, myToDos, contentDiv, projectContainer } from './index';
 import { screenEvent, projectSelected } from './events';
-import { format } from 'date-fns'
-const projectContainer = document.querySelector('#projContainer');
+import { format } from 'date-fns';
 class forms {
     static todoForm(status, clickevent) {
         let key = '';
@@ -12,54 +11,51 @@ class forms {
                  key = clickevent.target.id.charAt(0);
              }
         }
-        let select = document.querySelector('#content');
-        select.appendChild(document.createElement('div')).className = 'filter';
-        select.appendChild(document.createElement('div')).className = 'formContainer';
-        select.lastChild.appendChild(document.createElement('form')).className = 'todoForm';
-        select = document.querySelector('.todoForm');
-        select.appendChild(document.createElement('button')).className = 'closebtn';
-        select.querySelector('.closebtn').setAttribute('type', 'reset');
-        select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
+        contentDiv.appendChild(document.createElement('div')).className = 'filter';
+        contentDiv.appendChild(document.createElement('div')).className = 'formContainer';
+        contentDiv.lastChild.appendChild(document.createElement('form')).className = 'todoForm';
+        let form = document.querySelector('.todoForm');
+        form.appendChild(document.createElement('button')).className = 'closebtn';
+        form.querySelector('.closebtn').setAttribute('type', 'reset');
+        form.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
         if(status == 'new') {
-            select.appendChild(document.createElement('h1')).textContent = 'New ToDo';
+            form.appendChild(document.createElement('h1')).textContent = 'New ToDo';
         }else {
-            select.appendChild(document.createElement('h1')).textContent = 'Modify ToDo';
+            form.appendChild(document.createElement('h1')).textContent = 'Modify ToDo';
             }
-        select.appendChild(document.createElement('p')).textContent = 'Project select'
-        select.appendChild(document.createElement('select')).id = 'projectChoice';
-        select = document.querySelector('#projectChoice');
-         for (let i = 0; i < myProjects.length; i++) {
-            select.appendChild(document.createElement('option')).textContent = myProjects[i];
-         }
-         screenEvent.checkProjectSelect;
-         select.value = projectSelected;
-        select = document.querySelector('.todoForm');
-        select.appendChild(document.createElement('p')).textContent = 'Priority level';
-        select.appendChild(document.createElement('select')).id = 'priorityChoice';
-        select = document.querySelector('#priorityChoice');
-        select.appendChild(document.createElement('option')).textContent = 'Low';
-        select.options[0].value = 'Green';
-        select.appendChild(document.createElement('option')).textContent = 'Medium';
-        select.options[1].value = 'Orange';
-        select.appendChild(document.createElement('option')).textContent = 'High';
-        select.options[2].value = 'Red';
-        if(status == 'modify') {
-            select.value = myToDos[key].priority;
+        form.appendChild(document.createElement('p')).textContent = 'Project select'
+        form.appendChild(document.createElement('select')).id = 'projectChoice';
+        let projectChoices = form.querySelector('#projectChoice');
+        for (let i = 0; i < myProjects.length; i++) {
+           projectChoices.appendChild(document.createElement('option')).textContent = myProjects[i];
         }
-        select = document.querySelector('.todoForm');
-        select.appendChild(document.createElement('p')).textContent = 'Discription';
-        select.appendChild(document.createElement('textarea')).setAttribute('rows', '4');
+        screenEvent.checkProjectSelect;
+        form.value = projectSelected;
+        form.appendChild(document.createElement('p')).textContent = 'Priority level';
+        form.appendChild(document.createElement('select')).id = 'priorityChoice';
+        let priorityChoices = form.querySelector('#priorityChoice');
+        priorityChoices.appendChild(document.createElement('option')).textContent = 'Low';
+        priorityChoices.options[0].value = 'Green';
+        priorityChoices.appendChild(document.createElement('option')).textContent = 'Medium';
+        priorityChoices.options[1].value = 'Orange';
+        priorityChoices.appendChild(document.createElement('option')).textContent = 'High';
+        priorityChoices.options[2].value = 'Red';
         if(status == 'modify') {
-            select.querySelector('textarea').textContent = myToDos[key].discription;
+            priorityChoices.value = myToDos[key].priority;
         }
-        select.appendChild(document.createElement('p')).textContent = 'When should this task be completed by?';
-        select.appendChild(document.createElement('input'))
-        select.querySelector('input').type = 'date';
+        form.appendChild(document.createElement('p')).textContent = 'Discription';
+        form.appendChild(document.createElement('textarea')).setAttribute('rows', '4');
         if(status == 'modify') {
-            select.querySelector('input').value = format((new Date(myToDos[key].time)), 'yyyy-MM-dd');
+            form.querySelector('textarea').textContent = myToDos[key].discription;
         }
-        select.appendChild(document.createElement('button')).id = 'Submit';
-        select.querySelector('#Submit').textContent = 'Submit';
+        form.appendChild(document.createElement('p')).textContent = 'When should this task be completed by?';
+        form.appendChild(document.createElement('input'))
+        form.querySelector('input').type = 'date';
+        if(status == 'modify') {
+            form.querySelector('input').value = format((new Date(myToDos[key].time)), 'yyyy-MM-dd');
+        }
+        form.appendChild(document.createElement('button')).id = 'Submit';
+        form.querySelector('#Submit').textContent = 'Submit';
         if(status == 'new') {
             screenEvent.addFormListener('new', 'none');
         }else {
@@ -67,8 +63,8 @@ class forms {
         }
     }
     static get closeToDoForm() {
-        document.querySelector('#content').removeChild(document.querySelector('.formContainer'));
-        document.querySelector('#content').removeChild(document.querySelector('.filter'));
+        contentDiv.removeChild(contentDiv.lastChild);
+        contentDiv.removeChild(contentDiv.lastChild);
     }
     static get newProjectForm() {
         projectContainer.appendChild(document.createElement('form')).id = 'newProjForm';

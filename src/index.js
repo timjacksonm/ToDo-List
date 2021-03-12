@@ -3,14 +3,15 @@ import { ToDo } from './todotask';
 import { forms } from './forms';
 import { format, addDays } from 'date-fns';
 import { screenEvent, projectSelected, sortSelected } from './events';
-
+const contentDiv = document.getElementById('content');
+const projectContainer = document.getElementById('projContainer');
+const todoContainer = document.getElementById('todoContainer');
 const addProjectButton = document.getElementById('addProject');
-const addToDoButton =  document.getElementById('newTodo');
-const closeNav = document.getElementById('closeNav');
-const openNav = document.getElementById('openNav');
+const addTodoButton =  document.getElementById('newTodo');
+const openNavButton = document.getElementById('openNav');
+const closeNavButton = document.getElementById('closeNav');
+const sortContainer = document.getElementById('sortContainer');
 const sliderToggle = document.getElementById('sliderToggle');
-const projectContainer = document.querySelector('#projContainer');
-const sortContainer = document.querySelector('#sortContainer');
 
 let myProjects = [];
 let myToDos = [];
@@ -31,10 +32,10 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 (function winLoad(){
     screenWidth = window.screen.availWidth;
     sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
-    openNav.addEventListener('click', ()=>{display.openNav});
-    closeNav.addEventListener('click', ()=>{display.closeNav});
+    openNavButton.addEventListener('click', ()=>{display.openNav});
+    closeNavButton.addEventListener('click', ()=>{display.closeNav});
     addProjectButton.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
-    addToDoButton.addEventListener('click', ()=>{forms.todoForm('new');});
+    addTodoButton.addEventListener('click', ()=>{forms.todoForm('new');});
     //first window Listener auto closes nav if clicked outside of nav window.
     window.addEventListener('click', (e)=>{
         if (e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
@@ -58,3 +59,4 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 })();
 
 export { myProjects, myToDos, screenEvent, screenWidth };
+export { contentDiv, projectContainer, todoContainer, addProjectButton, addTodoButton, sortContainer, sliderToggle };

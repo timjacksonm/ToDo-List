@@ -1,13 +1,13 @@
-import { myProjects, myToDos, screenWidth } from './index';
+import { myProjects, myToDos, screenWidth, contentDiv, projectContainer, todoContainer, sliderToggle } from './index';
 import { screenEvent } from './events';
-import { format, formatDistanceToNowStrict, parseISO } from 'date-fns'
+import { format, formatDistanceToNowStrict, parseISO } from 'date-fns';
 import { sort } from './sort';
 
 class display {
     static appendAllTodos(projectName, sortSelected) {
-        const selectContainer = document.querySelector('#todoContainer');
-        selectContainer.innerHTML = '';
+        todoContainer.innerHTML = '';
         let myToDosSorted = [];
+        //configuration for current Nav Selection.
        switch (sortSelected) {
            case 'All':
                myToDosSorted = myToDos;
@@ -26,19 +26,19 @@ class display {
        }
         for (let i = 0; i < myToDosSorted.length; i++) {
             if (myToDosSorted[i].project == projectName) {
-            selectContainer.appendChild(document.createElement('li')).className = 'listItem';
-            selectContainer.lastChild.id = 'task' + i;
-            selectContainer.lastChild.appendChild(document.createElement('label')).className = 'checkLabel';
-            selectContainer.lastChild.querySelector('.checkLabel').setAttribute('for', `${i}`);
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'priority';
-            selectContainer.lastChild.querySelector('.priority').style.backgroundColor = myToDosSorted[i].priority;
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('input')).id = i;
+            todoContainer.appendChild(document.createElement('li')).className = 'listItem';
+            todoContainer.lastChild.id = 'task' + i;
+            todoContainer.lastChild.appendChild(document.createElement('label')).className = 'checkLabel';
+            todoContainer.lastChild.querySelector('.checkLabel').setAttribute('for', `${i}`);
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'priority';
+            todoContainer.lastChild.querySelector('.priority').style.backgroundColor = myToDosSorted[i].priority;
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('input')).id = i;
             document.getElementById(i).setAttribute('type', 'checkbox');
             if(myToDosSorted[i].checked == 'true' || myToDosSorted[i].checked == true){document.getElementById(i).checked = true;}
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
+            //if screen is a certain size - shorten discription title and add three ...
             let discName = myToDosSorted[i].discription;
-            //mediaquerie info for longer character limit on discription.
             if(screenWidth == 280){
                 if(myToDosSorted[i].discription.length > 10) {
                     discName = myToDosSorted[i].discription.substring(0, 10) + "...";
@@ -56,34 +56,32 @@ class display {
                     discName = myToDosSorted[i].discription.substring(0, 50) + "...";
                 }
             }
-            selectContainer.lastChild.querySelector('.labelDisc').textContent = discName;
-            selectContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'time';
-            selectContainer.lastChild.querySelector('.time').textContent = format(parseISO(myToDosSorted[i].time), 'MM/dd/yyyy');
-            selectContainer.lastChild.querySelector('.time').setAttribute('href', '#');
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'modify';
-            selectContainer.lastChild.querySelector('.modify').id = i + 'modify';
-            selectContainer.lastChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
-            selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
-            selectContainer.lastChild.querySelector('.delete').id = i + 'delete';
-            selectContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
+            todoContainer.lastChild.querySelector('.labelDisc').textContent = discName;
+            todoContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'time';
+            todoContainer.lastChild.querySelector('.time').textContent = format(parseISO(myToDosSorted[i].time), 'MM/dd/yyyy');
+            todoContainer.lastChild.querySelector('.time').setAttribute('href', '#');
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'modify';
+            todoContainer.lastChild.querySelector('.modify').id = i + 'modify';
+            todoContainer.lastChild.querySelector('.modify').appendChild(document.createElement('i')).className = 'fa fa-pencil-square-o';
+            todoContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'delete';
+            todoContainer.lastChild.querySelector('.delete').id = i + 'delete';
+            todoContainer.lastChild.firstChild.querySelector('.delete').appendChild(document.createElement('i')).className = 'fa fa-trash';
             }
         }
         screenEvent.addTodoListeners;
     }
     static get appendAllProjects() {
-        const selectNavContainer = document.querySelector('#projContainer');
-        selectNavContainer.innerHTML = '';
-
+        projectContainer.innerHTML = '';
         for (let i = 0; i < myProjects.length; i++) {
-            selectNavContainer.appendChild(document.createElement('label')).className = 'projectListing';
-            selectNavContainer.lastChild.appendChild(document.createElement('input')).setAttribute('name', 'radio');
-            selectNavContainer.lastChild.querySelector('input').type = 'radio';
-            selectNavContainer.lastChild.appendChild(document.createElement('span')).className = 'projSelect';
-            selectNavContainer.lastChild.querySelector('.projSelect').textContent = myProjects[i];
-            selectNavContainer.lastChild.querySelector('.projSelect').appendChild(document.createElement('button')).className = 'projDelete';
-            selectNavContainer.lastChild.querySelector('.projDelete').id = i + 'delete';
-            selectNavContainer.lastChild.querySelector('.projDelete').appendChild(document.createElement('i')).className = 'fa fa-trash';
+            projectContainer.appendChild(document.createElement('label')).className = 'projectListing';
+            projectContainer.lastChild.appendChild(document.createElement('input')).setAttribute('name', 'radio');
+            projectContainer.lastChild.querySelector('input').type = 'radio';
+            projectContainer.lastChild.appendChild(document.createElement('span')).className = 'projSelect';
+            projectContainer.lastChild.querySelector('.projSelect').textContent = myProjects[i];
+            projectContainer.lastChild.querySelector('.projSelect').appendChild(document.createElement('button')).className = 'projDelete';
+            projectContainer.lastChild.querySelector('.projDelete').id = i + 'delete';
+            projectContainer.lastChild.querySelector('.projDelete').appendChild(document.createElement('i')).className = 'fa fa-trash';
         }
     }
     static get openNav() {
@@ -94,9 +92,7 @@ class display {
     }
     static get toggleLightDark() {
         const root = document.documentElement;
-        const sliderSelect = document.querySelector('label');
-
-        if(sliderSelect.firstElementChild.checked){
+        if(sliderToggle.firstElementChild.checked){
         // //dark mode
         root.style.setProperty('--background-one', '#15202B');
         root.style.setProperty('--background-two', '#1da1f2');
@@ -105,7 +101,7 @@ class display {
         root.style.setProperty('--primary-text', '#FFFFFF');
         root.style.setProperty('--secondary-text', '#8899A6');
         }else {
-        //light mode
+        //light mode    contentDiv = document.querySelector('.discForm');
         root.style.setProperty('--background-one', '#3B5998');
         root.style.setProperty('--background-two', '#1DA1F2');
         root.style.setProperty('--border-color', '#8B9DC3');
@@ -114,22 +110,21 @@ class display {
         root.style.setProperty('--secondary-text', '#DFE3EE');
         }
     }
-    static discription(key) {
+    static infoScreen(key) {
         let date = new Date(myToDos[key].time)
-        let select = document.querySelector('#content');
-        select.appendChild(document.createElement('div')).className = 'filter';
-        select.appendChild(document.createElement('div')).className = 'formContainer';
-        select.lastChild.appendChild(document.createElement('form')).className = 'discForm';
-        select = document.querySelector('.discForm');
-        select.appendChild(document.createElement('button')).className = 'closebtn';
-        select.querySelector('.closebtn').setAttribute('type', 'reset');
-        select.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
-        select.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
-        select.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(date, 'PPPP');
-        select.appendChild(document.createElement('p')).textContent = 'Be sure to complete ToDo task:' + ' ' + formatDistanceToNowStrict(date, { addSuffix: true}) + '!';
-        select.appendChild(document.createElement('h3')).textContent = 'Discription expanded:';
-        select.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
-        select.lastChild.className = 'discr';
+        contentDiv.appendChild(document.createElement('div')).className = 'filter';
+        contentDiv.appendChild(document.createElement('div')).className = 'formContainer';
+        contentDiv.lastChild.appendChild(document.createElement('form')).className = 'discForm';
+        let discScreen = document.querySelector('.discForm');
+        discScreen.appendChild(document.createElement('button')).className = 'closebtn';
+        discScreen.querySelector('.closebtn').setAttribute('type', 'reset');
+        discScreen.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
+        discScreen.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
+        discScreen.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(date, 'PPPP');
+        discScreen.appendChild(document.createElement('p')).textContent = 'Be sure to complete ToDo task:' + ' ' + formatDistanceToNowStrict(date, { addSuffix: true}) + '!';
+        discScreen.appendChild(document.createElement('h3')).textContent = 'Discription expanded:';
+        discScreen.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
+        discScreen.lastChild.className = 'discr';
         screenEvent.addFormListener('formDisc');
     }
 };

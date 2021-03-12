@@ -1,6 +1,5 @@
 import { myToDos } from './index';
-import { isToday, isThisWeek, isThisMonth, parseISO } from 'date-fns'
-
+import { isToday, isThisWeek, isThisMonth, parseISO } from 'date-fns';
 class sort {
     static get todayList() {
         let myToDosSorted = [];
