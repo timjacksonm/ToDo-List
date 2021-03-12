@@ -1,4 +1,5 @@
-import { screenEvent, myProjects, myToDos, screenWidth } from './index';
+import { myProjects, myToDos, screenWidth } from './index';
+import { screenEvent } from './events';
 import { format, formatDistanceToNowStrict, parseISO } from 'date-fns'
 import { sort } from './sort';
 

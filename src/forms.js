@@ -1,4 +1,5 @@
-import { screenEvent, myProjects, myToDos, projectSelected } from './index';
+import { myProjects, myToDos } from './index';
+import { screenEvent, projectSelected } from './events';
 import { format } from 'date-fns'
 const projectContainer = document.querySelector('#projContainer');
 class forms {
