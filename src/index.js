@@ -23,8 +23,8 @@ const todo7 = new ToDo('Test1', 'Red', 'false', 'Modify Me!', `${format(addDays(
 const todo6 = new ToDo('Test1', 'Orange', 'false', 'This task test that (checked) works as intended and is saved if you switch to a different project.', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
 const todo5 = new ToDo('Test1', 'Green', 'false', 'This task test the character limit for this discription title. Once you click the discription title a new info window will appear. You can read this full discription inside that window!', `${format(new Date(), 'yyyy-MM-dd')}`);
 const todo4 = new ToDo('Test1', 'Green', 'false', 'Go ahead Add a new Task to this project by clicking the + button above!', `${format(new Date(), 'yyyy-MM-dd')}`);
-const todo3 = new ToDo('Default', 'Red', 'false', 'This task is displayed for All, Month. Unless you are veiwing this page within the last 8 days of the current month.', `${format(addDays(new Date(), 8), 'yyyy-MM-dd')}`);
-const todo2 = new ToDo('Default', 'Orange', 'false', 'This task is displayed for this Week / Month.', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
+const todo3 = new ToDo('Default', 'Red', 'false', 'This task is displayed for All, Month. Unless you are veiwing this page within the last 8 days of the current month!', `${format(addDays(new Date(), 8), 'yyyy-MM-dd')}`);
+const todo2 = new ToDo('Default', 'Orange', 'false', 'This task is displayed for this Week / Month. Unless you are veiwing this page on the last day of the current week!', `${format(addDays(new Date(), 1), 'yyyy-MM-dd')}`);
 const todo1 = new ToDo('Default', 'Green', 'false', 'This task is displayed for any sort selection.', `${format(new Date(), 'yyyy-MM-dd')}`);
 myProjects.push(todo1.project, todo4.project);
 myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
@@ -183,7 +183,6 @@ class screenEvent {
             if(completed == true) {
                 const formSelect = document.querySelector('.todoForm');
                 myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
-                console.log(myToDos);
                 return true;
             }else {
                 return false;
@@ -241,4 +240,6 @@ class screenEvent {
     screenEvent.checkSortSelect;
     display.appendAllTodos('Default', sortSelected);
 })();
+
+console.log(localStorage);
 export { myProjects, myToDos, screenEvent, projectSelected, sortSelected, screenWidth };

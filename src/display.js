@@ -1,5 +1,5 @@
 import { screenEvent, myProjects, myToDos, screenWidth } from './index';
-import { format, formatDistanceToNowStrict } from 'date-fns'
+import { format, formatDistanceToNowStrict, parseISO } from 'date-fns'
 import { sort } from './sort';
 
 class display {
@@ -58,8 +58,7 @@ class display {
             selectContainer.lastChild.querySelector('.labelDisc').textContent = discName;
             selectContainer.lastChild.querySelector('.labelDisc').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'time';
-            let date = new Date(myToDosSorted[i].time);
-            selectContainer.lastChild.querySelector('.time').textContent = format(date, 'P');
+            selectContainer.lastChild.querySelector('.time').textContent = format(parseISO(myToDosSorted[i].time), 'MM/dd/yyyy');
             selectContainer.lastChild.querySelector('.time').setAttribute('href', '#');
             selectContainer.lastChild.firstChild.appendChild(document.createElement('button')).className = 'modify';
             selectContainer.lastChild.querySelector('.modify').id = i + 'modify';
