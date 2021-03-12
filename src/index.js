@@ -35,10 +35,27 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
     openNavButton.addEventListener('click', ()=>{display.openNav});
     closeNavButton.addEventListener('click', ()=>{display.closeNav});
     addProjectButton.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
-    addTodoButton.addEventListener('click', ()=>{forms.todoForm('new');});
+    //eventListener for submitting new project
+    projectContainer.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        if(myProjects.includes(e.target.firstChild.value) || e.target.firstChild.value == '') {
+            e.target.firstChild.required = true;
+            document.querySelector("#newProjForm > input[type=text]").style.outlineColor = 'red';
+        }else {
+            myProjects.push(e.target.firstChild.value);
+            display.appendAllProjects;
+            projectContainer.querySelector('input').checked = 'checked';
+            screenEvent.addProjectListeners;
+            addProject.disabled = false;
+        }
+    });
+    addTodoButton.addEventListener('click', ()=>{
+        if(myProjects.length == 1) {
+            forms.todoForm('new');
+    }});
     //first window Listener auto closes nav if clicked outside of nav window.
     window.addEventListener('click', (e)=>{
-        if (e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
+        if(e.target.offsetWidth > document.getElementById('mySidenav').offsetWidth && document.getElementById('mySidenav').offsetWidth > 100) {
             display.closeNav;
         }
     });
@@ -57,6 +74,6 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
     screenEvent.checkNavSelections;
     display.appendAllTodos(projectSelected, sortSelected);
 })();
-
+window.addEventListener('click', ()=>{console.log(myToDos, myProjects)});
 export { myProjects, myToDos, screenEvent, screenWidth };
 export { contentDiv, projectContainer, todoContainer, addProjectButton, addTodoButton, sortContainer, sliderToggle };

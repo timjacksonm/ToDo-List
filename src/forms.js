@@ -26,11 +26,11 @@ class forms {
         form.appendChild(document.createElement('p')).textContent = 'Project select'
         form.appendChild(document.createElement('select')).id = 'projectChoice';
         let projectChoices = form.querySelector('#projectChoice');
-        for (let i = 0; i < myProjects.length; i++) {
+        for(let i = 0; i < myProjects.length; i++) {
            projectChoices.appendChild(document.createElement('option')).textContent = myProjects[i];
         }
-        screenEvent.checkProjectSelect;
-        form.value = projectSelected;
+        screenEvent.checkNavSelections;
+        projectChoices.value = projectSelected;
         form.appendChild(document.createElement('p')).textContent = 'Priority level';
         form.appendChild(document.createElement('select')).id = 'priorityChoice';
         let priorityChoices = form.querySelector('#priorityChoice');

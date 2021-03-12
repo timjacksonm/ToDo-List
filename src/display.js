@@ -24,8 +24,8 @@ class display {
            default:
                break;
        }
-        for (let i = 0; i < myToDosSorted.length; i++) {
-            if (myToDosSorted[i].project == projectName) {
+        for(let i = 0; i < myToDosSorted.length; i++) {
+            if(myToDosSorted[i].project == projectName) {
             todoContainer.appendChild(document.createElement('li')).className = 'listItem';
             todoContainer.lastChild.id = 'task' + i;
             todoContainer.lastChild.appendChild(document.createElement('label')).className = 'checkLabel';
@@ -73,7 +73,7 @@ class display {
     }
     static get appendAllProjects() {
         projectContainer.innerHTML = '';
-        for (let i = 0; i < myProjects.length; i++) {
+        for(let i = 0; i < myProjects.length; i++) {
             projectContainer.appendChild(document.createElement('label')).className = 'projectListing';
             projectContainer.lastChild.appendChild(document.createElement('input')).setAttribute('name', 'radio');
             projectContainer.lastChild.querySelector('input').type = 'radio';
