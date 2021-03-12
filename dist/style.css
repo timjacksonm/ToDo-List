@@ -215,6 +215,9 @@ input:checked + .slider:before {
   border: 1px solid var(--background-two);
   border-radius: 5px;
 }
+.error {
+  border:2px solid red;
+}
 /* MAIN | CENTER OF PAGE  */
 main {
   flex: 1;

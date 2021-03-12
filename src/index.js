@@ -1,7 +1,7 @@
 import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
-import { format, addDays, isThisWeek, parseISO } from 'date-fns';
+import { format, addDays } from 'date-fns';
 const addProject = document.getElementById('addProject');
 const addToDo =  document.getElementById('newTodo');
 const closeNav = document.getElementById('closeNav');
@@ -31,13 +31,17 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 
 class screenEvent {
     static get getNewProject() {
-        projectContainer.querySelector('#newProjForm').addEventListener('submit', (e)=>{
+        projectContainer.addEventListener('submit', (e)=>{
             e.preventDefault();
-            myProjects.push(e.target.firstChild.value);
-            forms.removeProjectForm;
-            display.appendAllProjects;
-            this.addProjectListeners;
-            addProject.disabled = false;
+            if(e.target.firstChild.value !== '') {
+                myProjects.push(e.target.firstChild.value);
+                display.appendAllProjects;
+                this.addProjectListeners;
+                addProject.disabled = false;
+            }else  {
+                e.target.firstChild.required = true;
+                document.querySelector("#newProjForm > input[type=text]").style.outlineColor = 'red';
+            }
         });
     }
     static get addProjectListeners() {
@@ -74,8 +78,6 @@ class screenEvent {
                                     screenEvent.checkProjectSelect;
                                     screenEvent.checkSortSelect;
                                     display.appendAllTodos(projectSelected, sortSelected);
-                                    console.table(myProjects);
-                                    console.table(myToDos);
                                }
                            }
                            confirmWindow();
@@ -231,14 +233,15 @@ class screenEvent {
         screenWidth = e.target.screen.availWidth;
         display.appendAllTodos('Default', sortSelected);
     })
+    screenEvent.getNewProject;
     display.appendAllProjects;
-    document.querySelector('#projContainer').querySelector('input').checked = 'checked';
-    document.querySelector('#sortContainer').querySelector('input').checked = 'checked';
+    projectContainer.querySelector('input').checked = 'checked';
+    sortContainer.querySelector('input').checked = 'checked';
     screenEvent.addProjectListeners;
     screenEvent.addSortListeners;
     screenEvent.checkProjectSelect;
     screenEvent.checkSortSelect;
-    display.appendAllTodos('Default', sortSelected);
+    display.appendAllTodos(projectSelected, sortSelected);
 })();
 
 console.log(localStorage);

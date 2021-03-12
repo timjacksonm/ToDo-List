@@ -1,5 +1,6 @@
 import { screenEvent, myProjects, myToDos, projectSelected } from './index';
 import { format } from 'date-fns'
+const projectContainer = document.querySelector('#projContainer');
 class forms {
     static todoForm(status, clickevent) {
         let key = '';
@@ -69,16 +70,14 @@ class forms {
         document.querySelector('#content').removeChild(document.querySelector('.filter'));
     }
     static get newProjectForm() {
-        const projectContainer = document.querySelector('#projContainer');
         projectContainer.appendChild(document.createElement('form')).id = 'newProjForm';
         projectContainer.querySelector('#newProjForm').setAttribute('submit', 'e.preventDefault();')
         projectContainer.lastChild.appendChild(document.createElement('input')).value = 'New Project';
         projectContainer.lastChild.lastChild.type = 'text';
         projectContainer.lastChild.lastChild.focus();
-        screenEvent.getNewProject;
     }
     static get removeProjectForm() {
-        document.querySelector('#projContainer').lastChild.innerHTML = '';
+        projectContainer.removeChild(projectContainer.lastChild);
     }
     static validation(formType) {
         const selectForm = document.querySelector('.todoForm');
