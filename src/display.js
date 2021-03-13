@@ -120,7 +120,13 @@ class display {
         discScreen.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
         discScreen.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
         discScreen.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(parseISO(myToDos[key].time), 'PPPP');
-        discScreen.appendChild(document.createElement('p')).textContent = 'Time remaining to complete task:' + ' ' + formatDistanceToNow(endOfDay(parseISO(myToDos[key].time))) + '!';
+        let timeRemaining = '';
+        if (formatDistanceToNow(endOfDay(parseISO(myToDos[key].time)), { addSuffix: true }).includes('ago')) {
+            timeRemaining = 'Past due';
+        }else {
+            timeRemaining = formatDistanceToNow(endOfDay(parseISO(myToDos[key].time)), { addSuffix: true });
+        }
+        discScreen.appendChild(document.createElement('p')).textContent = 'Time remaining to complete task:' + ' ' + timeRemaining + '!';
         discScreen.appendChild(document.createElement('h3')).textContent = 'Discription expanded:';
         discScreen.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
         discScreen.lastChild.className = 'discr';
