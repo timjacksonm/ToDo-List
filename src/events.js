@@ -78,6 +78,7 @@ class screenEvent {
         discrButton.forEach(disc => {
             disc.addEventListener('click', (e)=>{
                 let key = e.target.parentNode.querySelector('input').id;
+                local.storeData;
                 display.infoScreen(key);
             });
         });

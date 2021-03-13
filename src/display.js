@@ -1,6 +1,6 @@
 import { myProjects, myToDos, screenWidth, contentDiv, projectContainer, todoContainer, sliderToggle } from './index';
 import { screenEvent } from './events';
-import { format, formatDistanceToNowStrict, parseISO } from 'date-fns';
+import { format, parseISO, endOfDay, formatDistanceToNow } from 'date-fns';
 import { sort } from './sort';
 
 class display {
@@ -111,7 +111,6 @@ class display {
         }
     }
     static infoScreen(key) {
-        let date = new Date(myToDos[key].time)
         contentDiv.appendChild(document.createElement('div')).className = 'filter';
         contentDiv.appendChild(document.createElement('div')).className = 'formContainer';
         contentDiv.lastChild.appendChild(document.createElement('form')).className = 'discForm';
@@ -120,8 +119,8 @@ class display {
         discScreen.querySelector('.closebtn').setAttribute('type', 'reset');
         discScreen.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
         discScreen.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
-        discScreen.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(date, 'PPPP');
-        discScreen.appendChild(document.createElement('p')).textContent = 'Be sure to complete ToDo task:' + ' ' + formatDistanceToNowStrict(date, { addSuffix: true}) + '!';
+        discScreen.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(parseISO(myToDos[key].time), 'PPPP');
+        discScreen.appendChild(document.createElement('p')).textContent = 'Time remaining to complete task:' + ' ' + formatDistanceToNow(endOfDay(parseISO(myToDos[key].time))) + '!';
         discScreen.appendChild(document.createElement('h3')).textContent = 'Discription expanded:';
         discScreen.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
         discScreen.lastChild.className = 'discr';
