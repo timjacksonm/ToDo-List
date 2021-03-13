@@ -6,9 +6,9 @@ class forms {
         let key = '';
         if(status == 'modify') {
             if(clickevent.target.className == 'fa fa-pencil-square-o') {
-                key = clickevent.target.parentNode.id.charAt(0);
+                key = clickevent.target.parentNode.id.match(/\d+/)[0];
              }else {
-                 key = clickevent.target.id.charAt(0);
+                 key = clickevent.target.id.modfiy.match(/\d+/)[0];
              }
         }
         contentDiv.appendChild(document.createElement('div')).className = 'filter';

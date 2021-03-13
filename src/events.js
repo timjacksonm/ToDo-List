@@ -23,7 +23,7 @@ class screenEvent {
         deleteProjectButton.forEach(button => {
             button.addEventListener('click', (e)=>{
                 if(e.target.className == 'fa fa-trash') {
-                    let projIndex = e.target.parentNode.id.charAt(0);
+                    let projIndex = e.target.parentNode.id.match(/\d+/)[0];
                     const choice = confirm('Delete' + ' ' + `"${myProjects[projIndex]}"?` + ' ' + 'Confirm will delete this project and all todo/s assigned to it.');
                     if(choice == true) {
                         let todoIndex = 0;
@@ -36,6 +36,7 @@ class screenEvent {
                             }
                         }
                         myProjects.splice(projIndex, 1);
+                        local.storeData;
                         display.appendAllProjects;
                         screenEvent.addProjectListeners;
                         //if no projects listed do nothing.
@@ -90,9 +91,9 @@ class screenEvent {
             button.addEventListener('click', (e)=>{
                 let key = '';
                 if(e.target.className == 'fa fa-trash') {
-                    key = e.target.parentNode.id.charAt(0);
+                    key = e.target.parentNode.id.match(/\d+/)[0];
                 }else {
-                    key = e.target.id.charAt(0);
+                    key = e.target.id.match(/\d+/)[0];
                 }
                 myToDos.splice(key, 1);
                 local.storeData;

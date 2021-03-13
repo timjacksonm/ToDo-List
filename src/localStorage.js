@@ -3,7 +3,6 @@ class local {
     static get storeData() {
         let toggleSetting = sliderToggle.firstElementChild.checked;
         localStorage.setItem('lightdarkmode', JSON.stringify(toggleSetting));
-        console.log(myProjects, myToDos);
         localStorage.setItem('myProjects', JSON.stringify(myProjects));
         localStorage.setItem('myToDos', JSON.stringify(myToDos));
     }

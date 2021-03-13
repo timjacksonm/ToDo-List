@@ -79,12 +79,14 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
     }
     display.appendAllProjects;
     //selects first sort seleciton 'all' & first named project 'default'
-    projectContainer.querySelector('input').checked = 'checked';
     sortContainer.querySelector('input').checked = 'checked';
-    screenEvent.addProjectListeners;
-    screenEvent.addSortListeners;
-    screenEvent.checkNavSelections;
-    display.appendAllTodos(projectSelected, sortSelected);
+    if(myProjects.length !== 0) {
+        projectContainer.querySelector('input').checked = 'checked';
+        screenEvent.addProjectListeners;
+        screenEvent.addSortListeners;
+        screenEvent.checkNavSelections;
+        display.appendAllTodos(projectSelected, sortSelected);
+    }
     display.toggleLightDark;
 })();
 export { myProjects, myToDos, screenEvent, screenWidth };
