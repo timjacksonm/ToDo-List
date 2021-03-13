@@ -3,6 +3,7 @@ import { ToDo } from './todotask';
 import { forms } from './forms';
 import { format, addDays } from 'date-fns';
 import { screenEvent, projectSelected, sortSelected } from './events';
+import { local } from './localStorage';
 const contentDiv = document.getElementById('content');
 const projectContainer = document.getElementById('projContainer');
 const todoContainer = document.getElementById('todoContainer');
@@ -31,7 +32,7 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
 
 (function winLoad(){
     screenWidth = window.screen.availWidth;
-    sliderToggle.addEventListener('click', ()=>{display.toggleLightDark});
+    sliderToggle.addEventListener('click', ()=>{display.toggleLightDark; local.storeData;});
     openNavButton.addEventListener('click', ()=>{display.openNav});
     closeNavButton.addEventListener('click', ()=>{display.closeNav});
     addProjectButton.addEventListener('click',  ()=>{addProject.disabled = true; forms.newProjectForm;});
@@ -47,10 +48,11 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
             projectContainer.querySelector('input').checked = 'checked';
             screenEvent.addProjectListeners;
             addProject.disabled = false;
+            local.storeData;
         }
     });
     addTodoButton.addEventListener('click', ()=>{
-        if(myProjects.length == 1) {
+        if(myProjects.length >= 1) {
             forms.todoForm('new');
     }});
     //first window Listener auto closes nav if clicked outside of nav window.
@@ -65,6 +67,16 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
         screenEvent.checkNavSelections;
         display.appendAllTodos(projectSelected, sortSelected);
     });
+    if(localStorage.length == 0) {
+        local.storeData;
+    }else {
+        let todoDataFromLocal = [];
+        myToDos = [];
+        sliderToggle.firstElementChild.checked = local.getLightDark;
+        myProjects = local.getProjects;
+        todoDataFromLocal = local.getTodos;
+        todoDataFromLocal.forEach(todo => {myToDos.push(new ToDo(`${todo.project}`, `${todo.priority}`, `${todo.checked}`, `${todo.discription}`, `${todo.time}`))});
+    }
     display.appendAllProjects;
     //selects first sort seleciton 'all' & first named project 'default'
     projectContainer.querySelector('input').checked = 'checked';
@@ -73,7 +85,7 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
     screenEvent.addSortListeners;
     screenEvent.checkNavSelections;
     display.appendAllTodos(projectSelected, sortSelected);
+    display.toggleLightDark;
 })();
-window.addEventListener('click', ()=>{console.log(myToDos, myProjects)});
 export { myProjects, myToDos, screenEvent, screenWidth };
 export { contentDiv, projectContainer, todoContainer, addProjectButton, addTodoButton, sortContainer, sliderToggle };

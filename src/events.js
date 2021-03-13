@@ -2,6 +2,7 @@ import { display } from './display';
 import { ToDo } from './todotask';
 import { forms } from './forms';
 import { myProjects, myToDos, projectContainer, todoContainer, sortContainer } from './index';
+import { local } from './localStorage';
 let projectSelected = '';
 let sortSelected = '';
 
@@ -69,6 +70,7 @@ class screenEvent {
             input.addEventListener('change', (e)=>{
                 let key = e.target.id;
                 myToDos[key].setChecked(e.target.checked);
+                local.storeData;
             })
         });
 //When the discription of a todo is clicked. Opens window displaying more information.
@@ -93,6 +95,7 @@ class screenEvent {
                     key = e.target.id.charAt(0);
                 }
                 myToDos.splice(key, 1);
+                local.storeData;
                 this.checkNavSelections
                 display.appendAllTodos(projectSelected, sortSelected);
         })
@@ -134,6 +137,7 @@ class screenEvent {
         if(formstatus == 'new') {
             if(completed == true) {
                 myToDos.push(new ToDo(`${formSelect.querySelector('#projectChoice').value}`, `${formSelect.querySelector('#priorityChoice').value}`, 'no', `${formSelect.querySelector('textarea').value}`, `${formSelect.querySelector('input').value}`));
+                local.storeData;
                 return true;
             }else {
                 return false;
@@ -144,6 +148,7 @@ class screenEvent {
                 myToDos[key].setPriority(formSelect.querySelector('#priorityChoice').value); 
                 myToDos[key].setDiscription(formSelect.querySelector('textarea').value);
                 myToDos[key].setTime(formSelect.querySelector('input').value);
+                local.storeData;
                 return true;
             }else {
                 return false;
