@@ -67,7 +67,7 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
         screenEvent.checkNavSelections;
         display.appendAllTodos(projectSelected, sortSelected);
     });
-    if(localStorage.length == 0 || myToDos[0].description == 'undifined') {
+    if(localStorage.length == 0 || myToDos[0].description == 'undefined') {
         local.storeData;
     }else {
         let todoDataFromLocal = [];
