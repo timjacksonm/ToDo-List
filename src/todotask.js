@@ -1,9 +1,9 @@
 class ToDo {
-    constructor(project,priority, checked, discription, time) {
+    constructor(project,priority, checked, description, time) {
         this.project = project;
         this.priority = priority;
         this.checked = checked;
-        this.discription = discription;
+        this.description = description;
         this.time = time;
     }
     setProject(project) {
@@ -15,8 +15,8 @@ class ToDo {
     setChecked(checked) {
        this.checked = checked;
     }
-    setDiscription(discription) {
-       this.discription = discription;
+    setDescription(description) {
+       this.description = description;
     }
     setTime(time) {
         this.time = time;

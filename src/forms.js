@@ -43,10 +43,10 @@ class forms {
         if(status == 'modify') {
             priorityChoices.value = myToDos[key].priority;
         }
-        form.appendChild(document.createElement('p')).textContent = 'Discription';
+        form.appendChild(document.createElement('p')).textContent = 'Description';
         form.appendChild(document.createElement('textarea')).setAttribute('rows', '4');
         if(status == 'modify') {
-            form.querySelector('textarea').textContent = myToDos[key].discription;
+            form.querySelector('textarea').textContent = myToDos[key].description;
         }
         form.appendChild(document.createElement('p')).textContent = 'When should this task be completed by?';
         form.appendChild(document.createElement('input'))

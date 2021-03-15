@@ -74,7 +74,7 @@ class screenEvent {
                 local.storeData;
             })
         });
-//When the discription of a todo is clicked. Opens window displaying more information.
+//When the description of a todo is clicked. Opens window displaying more information.
         discrButton.forEach(disc => {
             disc.addEventListener('click', (e)=>{
                 let key = e.target.parentNode.querySelector('input').id;
@@ -148,7 +148,7 @@ class screenEvent {
             if(completed == true) {
                 myToDos[key].setProject(formSelect.querySelector('#projectChoice').value);
                 myToDos[key].setPriority(formSelect.querySelector('#priorityChoice').value); 
-                myToDos[key].setDiscription(formSelect.querySelector('textarea').value);
+                myToDos[key].setDescription(formSelect.querySelector('textarea').value);
                 myToDos[key].setTime(formSelect.querySelector('input').value);
                 local.storeData;
                 return true;

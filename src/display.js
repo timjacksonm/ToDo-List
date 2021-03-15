@@ -37,23 +37,23 @@ class display {
             if(myToDosSorted[i].checked == 'true' || myToDosSorted[i].checked == true){document.getElementById(i).checked = true;}
             todoContainer.lastChild.firstChild.appendChild(document.createElement('span')).className = 'checkmark';
             todoContainer.lastChild.firstChild.appendChild(document.createElement('a')).className = 'labelDisc';
-            //if screen is a certain size - shorten discription title and add three ...
-            let discName = myToDosSorted[i].discription;
+            //if screen is a certain size - shorten description title and add three ...
+            let discName = myToDosSorted[i].description;
             if(screenWidth == 280){
-                if(myToDosSorted[i].discription.length > 10) {
-                    discName = myToDosSorted[i].discription.substring(0, 10) + "...";
+                if(myToDosSorted[i].description.length > 10) {
+                    discName = myToDosSorted[i].description.substring(0, 10) + "...";
                 }
             }else if(screenWidth > 280 && screenWidth <= 375) {
-                if(myToDosSorted[i].discription.length > 16) {
-                    discName = myToDosSorted[i].discription.substring(0, 16) + "...";
+                if(myToDosSorted[i].description.length > 16) {
+                    discName = myToDosSorted[i].description.substring(0, 16) + "...";
                 }
             }else if(screenWidth > 375 && screenWidth <= 812) {
-                if(myToDosSorted[i].discription.length > 25) {
-                    discName = myToDosSorted[i].discription.substring(0, 25) + "...";
+                if(myToDosSorted[i].description.length > 25) {
+                    discName = myToDosSorted[i].description.substring(0, 25) + "...";
                 }
             }else {
-                if(myToDosSorted[i].discription.length > 50) {
-                    discName = myToDosSorted[i].discription.substring(0, 50) + "...";
+                if(myToDosSorted[i].description.length > 50) {
+                    discName = myToDosSorted[i].description.substring(0, 50) + "...";
                 }
             }
             todoContainer.lastChild.querySelector('.labelDisc').textContent = discName;
@@ -118,7 +118,7 @@ class display {
         discScreen.appendChild(document.createElement('button')).className = 'closebtn';
         discScreen.querySelector('.closebtn').setAttribute('type', 'reset');
         discScreen.querySelector('.closebtn').appendChild(document.createElement('i')).className = 'fa fa-times';
-        discScreen.appendChild(document.createElement('h1')).textContent = 'ToDo Discription';
+        discScreen.appendChild(document.createElement('h1')).textContent = 'ToDo Description';
         discScreen.appendChild(document.createElement('p')).textContent = 'Date Due:' + ' ' + format(parseISO(myToDos[key].time), 'PPPP');
         let timeRemaining = '';
         if (formatDistanceToNow(endOfDay(parseISO(myToDos[key].time)), { addSuffix: true }).includes('ago')) {
@@ -127,8 +127,8 @@ class display {
             timeRemaining = formatDistanceToNow(endOfDay(parseISO(myToDos[key].time)), { addSuffix: true });
         }
         discScreen.appendChild(document.createElement('p')).textContent = 'Time remaining to complete task:' + ' ' + timeRemaining + '!';
-        discScreen.appendChild(document.createElement('h3')).textContent = 'Discription expanded:';
-        discScreen.appendChild(document.createElement('p')).textContent = myToDos[key].discription;
+        discScreen.appendChild(document.createElement('h3')).textContent = 'Description expanded:';
+        discScreen.appendChild(document.createElement('p')).textContent = myToDos[key].description;
         discScreen.lastChild.className = 'discr';
         screenEvent.addFormListener('formDisc');
     }

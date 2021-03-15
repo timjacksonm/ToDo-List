@@ -22,7 +22,7 @@ const todo9 = new ToDo('Test1', 'Green', 'false', 'Create a new project in the n
 const todo8 = new ToDo('Test1', 'Green', 'false', 'Delete Me!', `${format(addDays(new Date(), 8), 'yyyy-MM-dd')}`);
 const todo7 = new ToDo('Test1', 'Red', 'false', 'Modify Me!', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
 const todo6 = new ToDo('Test1', 'Orange', 'false', 'This task test that (checked) works as intended and is saved if you switch to a different project.', `${format(addDays(new Date(), 3), 'yyyy-MM-dd')}`);
-const todo5 = new ToDo('Test1', 'Green', 'false', 'This task test the character limit for this discription title. Once you click the discription title a new info window will appear. You can read this full discription inside that window!', `${format(new Date(), 'yyyy-MM-dd')}`);
+const todo5 = new ToDo('Test1', 'Green', 'false', 'This task test the character limit for this description title. Once you click the description title a new info window will appear. You can read this full description inside that window!', `${format(new Date(), 'yyyy-MM-dd')}`);
 const todo4 = new ToDo('Test1', 'Green', 'false', 'Go ahead Add a new Task to this project by clicking the + button above!', `${format(new Date(), 'yyyy-MM-dd')}`);
 const todo3 = new ToDo('Default', 'Red', 'false', 'This task is displayed for All, Month. Unless you are veiwing this page within the last 8 days of the current month!', `${format(addDays(new Date(), 8), 'yyyy-MM-dd')}`);
 const todo2 = new ToDo('Default', 'Orange', 'false', 'This task is displayed for this Week / Month. Unless you are veiwing this page on the last day of the current week!', `${format(addDays(new Date(), 1), 'yyyy-MM-dd')}`);
@@ -61,7 +61,7 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
             display.closeNav;
         }
     });
-    //mobile orientation change - updates discription title character length.
+    //mobile orientation change - updates description title character length.
     window.addEventListener('orientationchange', (e)=> {
         screenWidth = e.target.screen.availWidth;
         screenEvent.checkNavSelections;
@@ -75,7 +75,7 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
         sliderToggle.firstElementChild.checked = local.getLightDark;
         myProjects = local.getProjects;
         todoDataFromLocal = local.getTodos;
-        todoDataFromLocal.forEach(todo => {myToDos.push(new ToDo(`${todo.project}`, `${todo.priority}`, `${todo.checked}`, `${todo.discription}`, `${todo.time}`))});
+        todoDataFromLocal.forEach(todo => {myToDos.push(new ToDo(`${todo.project}`, `${todo.priority}`, `${todo.checked}`, `${todo.description}`, `${todo.time}`))});
     }
     display.appendAllProjects;
     //selects first sort seleciton 'all' & first named project 'default'
@@ -88,6 +88,7 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
         display.appendAllTodos(projectSelected, sortSelected);
     }
     display.toggleLightDark;
+    console.log(myToDos);
 })();
 export { myProjects, myToDos, screenEvent, screenWidth };
 export { contentDiv, projectContainer, todoContainer, addProjectButton, addTodoButton, sortContainer, sliderToggle };
