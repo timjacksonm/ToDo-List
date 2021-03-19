@@ -171,7 +171,6 @@ myToDos.push(todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8, todo9);
     display.appendAllTodos(projectSelected, sortSelected);
   }
   display.toggleLightDark;
-  console.log(myToDos);
 })();
 export { myProjects, myToDos, screenEvent, screenWidth };
 export {
