@@ -144,7 +144,6 @@ class screenEvent {
             display.appendAllTodos(projectSelected, sortSelected);
           }
         });
-        t;
         break;
       default:
         break;
