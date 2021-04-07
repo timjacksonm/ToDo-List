@@ -2,7 +2,7 @@
   <br>
   ToDo-List
   <br>
-  <image src="dist/images/" width="50%"> 
+  <image src="dist/images/logoImage.png" width="50%"> 
 </h1>
 
 <h4 align="center">ToDo-List an app to keep track of projects and their task. I used JavaScript, HTML, and CSS for this project.</h4>
