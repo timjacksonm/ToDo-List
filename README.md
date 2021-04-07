@@ -22,11 +22,12 @@
 <details>
   <summary>Show Image</summary>
 
-  ![GIF demo](dist/images/)
+  ![GIF demo](dist/images/ToDoDemo.gif)
 
-The next two images showcase responsive web design for Galaxy S5 & Ipad Pro.
-  <image src="dist/images/">
-  <image src="dist/images/">
+The next two images showcase responsive web design for IphoneX & Ipad.
+  <image src="dist/images/RWDIphoneModify.png">
+  <image src="dist/images/RWDIphoneDescription.png">
+    <image src="dist/images/RWDIpad.png">
 </details>
 
 ## Goals:
