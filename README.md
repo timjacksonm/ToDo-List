@@ -25,9 +25,21 @@
   ![GIF demo](dist/images/ToDoDemo.gif)
 
 The next two images showcase responsive web design for IphoneX & Ipad.
+  
+---
+
   <image src="dist/images/RWDIphoneModify.png">
+    
+---
+
   <image src="dist/images/RWDIphoneDescription.png">
-    <image src="dist/images/RWDIpad.png">
+    
+---
+
+  <image src="dist/images/RWDIpad.png">
+      
+---
+
 </details>
 
 ## Goals:
